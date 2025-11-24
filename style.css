@@ -1,0 +1,262 @@
+:root{
+  --accent:#1e3a8a; 
+  --orange:#ff9800;
+  --bg:#f3f6f8;
+  --card:#ffffff;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;
+  color:#222;
+  line-height:1.6; /* більше міжрядковий інтервал */
+  font-size:16px;  /* базовий розмір тексту */
+  background: url('https://www.dropbox.com/scl/fi/43dv42hsittkfom74y48j/544731538_24762045820086320_8111787248525329678_n.jpg?rlkey=5i0o9xh3w3xfdo5203sylxxi3&st=yrd12jwa&raw=1') no-repeat center center fixed;
+  background-size: cover;
+  position: relative;
+}
+
+/* === Overlay освітлення для читабельності === */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background: rgba(255,255,255,0.45); /* світліший шар */
+  z-index:-1;
+}
+
+/* HEADER */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:#fff;
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  z-index:1200;
+  padding:10px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:40px;border-radius:6px;object-fit:cover}
+.brand .title{font-weight:700;color:var(--accent);font-size:20px}
+
+/* Навігація */
+nav{display:flex;gap:18px;align-items:center}
+nav a{
+  color:#333;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 6px;
+  border-radius:6px;
+}
+nav a:hover, nav a.active{
+  color:var(--accent);
+  background:rgba(30,58,138,0.05);
+}
+
+/* BURGER MENU */
+.burger{
+  display:none;
+  flex-direction:column;
+  gap:4px;
+  cursor:pointer;
+  padding:6px;
+}
+.burger span{
+  width:24px;
+  height:3px;
+  background:#333;
+  border-radius:3px;
+}
+@media(max-width:780px){
+  nav{
+    position:fixed;
+    top:64px;
+    right:-100%;
+    background:#fff;
+    flex-direction:column;
+    padding:12px;
+    width:220px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.08);
+    transition:right .22s;
+    z-index:1100;
+  }
+  nav.show{right:10px}
+  .burger{display:flex}
+}
+
+/* MAIN CONTENT */
+main{padding-top:92px;max-width:1100px;margin:0 auto}
+.headline{padding:28px 18px 6px;text-align:center}
+.headline h1{
+  margin:0;
+  font-size:36px;
+  color:var(--accent);
+  font-weight:800;
+}
+.headline p{margin:8px 0 0;color:#444;font-size:17px;font-weight:500}
+
+/* SECTIONS */
+.section{padding:24px 18px}
+h3{
+  margin:0 0 12px;
+  text-align:center;
+  color:var(--accent);
+  font-weight:700;
+  font-size:22px;
+}
+
+/* CATALOG */
+.catalog{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+  margin-top:12px;
+}
+.card{
+  background:var(--card);
+  border-radius:12px;
+  padding:14px;
+  text-align:center;
+  box-shadow:0 6px 20px rgba(20,20,20,0.08);
+}
+.card img{
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  border-radius:10px;
+  margin-bottom:12px;
+}
+.card h4{margin:6px 0 4px;font-size:18px;color:#111;font-weight:700}
+.card p{margin:0;color:#555;font-size:15px}
+
+/* ADVANTAGES */
+.advantages{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:center;
+  margin-top:10px;
+}
+.adv{
+  background:#fff;
+  border-radius:10px;
+  padding:12px 14px;
+  min-width:160px;
+  font-weight:700;
+  text-align:center;
+  box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* SOCIALS (залишено як було) */
+.socials{
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  margin:18px 0;
+  align-items:center;
+}
+.socials a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:48px;
+  height:48px;
+  border-radius:10px;
+  background:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+.socials a svg{
+  width:26px;
+  height:26px;
+  display:block;
+  fill:#555;
+  transition: transform 0.2s ease, fill 0.2s ease;
+}
+.socials a[aria-label="Facebook"]:hover svg { fill: #1877F2; transform: scale(1.2); }
+.socials a[aria-label="Instagram"]:hover svg { fill: url(#IGgrad); transform: scale(1.2); }
+.socials a[aria-label="TikTok"]:hover svg { fill: #000; transform: scale(1.2); }
+.socials a[aria-label="Threads"]:hover svg { fill: #000; transform: scale(1.2); }
+.socials a[aria-label="LinkedIn"]:hover svg { fill: #0077B5; transform: scale(1.2); }
+
+/* ORDER FORM */
+.order-wrap{
+  max-width:820px;
+  margin:6px auto 30px;
+  padding:18px;
+  background:var(--card);
+  border-radius:12px;
+  box-shadow:0 8px 26px rgba(0,0,0,0.08);
+}
+form{display:flex;flex-direction:column;gap:10px}
+input[type="text"], input[type="tel"], textarea, input[type="number"]{
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ddd;
+  font-size:15px;
+  width:100%;
+  background:#fff;
+}
+.items{display:flex;flex-direction:column;gap:8px}
+.item-label{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  background:#fafafa;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #eee;
+  font-weight:600;
+}
+.item-label input{width:18px;height:18px}
+.total-row{font-weight:800;text-align:center;padding:10px 0;font-size:18px;color:var(--accent)}
+button[type="submit"]{
+  background:var(--orange);
+  color:#fff;
+  border:none;
+  padding:14px;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:16px;
+}
+button[type="submit"]:hover{background:#e67e22}
+
+/* CONTACTS */
+#contacts .contacts-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  margin-top:8px;
+  font-weight:600;
+  color:#333;
+  font-size:15px;
+}
+
+/* FOOTER */
+footer{
+  background:#111;
+  color:#fff;
+  padding:22px 18px;
+  text-align:center;
+  margin-top:28px;
+  font-size:15px;
+}
+footer .muted{color:rgba(255,255,255,0.75)}
+
+/* FLOAT BUTTONS */
+.tg-float{position:fixed;right:22px;bottom:22px;z-index:1200}
+.up-btn{
+  position:fixed;
+  right:22px;
+  bottom:92px;
+  width:52px;
+  height:52px;
+  border-radius:12px;
+  background:var
