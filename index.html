@@ -4,92 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Оренда обладнання — RepreZentbiz</title>
-
-  <!-- шрифт -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --accent:#1e3a8a; 
-      --orange:#ff9800;
-      --bg:#f3f6f8;
-      --card:#ffffff;
-    }
-    *{box-sizing:border-box}
-    body{
-      margin:0;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:var(--bg);color:#222;line-height:1.4;
-    }
-
-    header{
-      position:fixed;top:0;left:0;width:100%;background:#fff;border-bottom:1px solid rgba(0,0,0,0.06);
-      z-index:1200;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;
-    }
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{height:40px;border-radius:6px;object-fit:cover}
-    .brand .title{font-weight:700;color:var(--accent);font-size:18px}
-
-    nav{display:flex;gap:18px;align-items:center}
-    nav a{color:#333;text-decoration:none;font-weight:600;padding:8px 6px;border-radius:6px}
-    nav a:hover, nav a.active{color:var(--accent);background:rgba(30,58,138,0.05)}
-
-    .burger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:6px}
-    .burger span{width:24px;height:3px;background:#333;border-radius:3px}
-    @media(max-width:780px){
-      nav{position:fixed;top:64px;right:-100%;background:#fff;flex-direction:column;padding:12px;width:220px;
-          box-shadow:0 6px 18px rgba(0,0,0,0.08);transition:right .22s}
-      nav.show{right:10px}
-      .burger{display:flex}
-    }
-
-    main{padding-top:92px;max-width:1100px;margin:0 auto}
-
-    .headline{padding:28px 18px 6px;text-align:center}
-    .headline h1{margin:0;font-size:34px;color:var(--accent);font-weight:800}
-    .headline p{margin:8px 0 0;color:#555;font-size:15px}
-
-    .section{padding:24px 18px}
-    h3{margin:0 0 12px;text-align:center;color:var(--accent)}
-
-    .catalog{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:12px}
-    .card{background:var(--card);border-radius:12px;padding:14px;text-align:center;box-shadow:0 6px 20px rgba(20,20,20,0.04)}
-    .card img{width:100%;height:auto;object-fit:cover;border-radius:10px;margin-bottom:12px}
-    .card h4{margin:6px 0 4px;font-size:18px;color:#111}
-    .card p{margin:0;color:#666}
-
-    .advantages{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:10px}
-    .adv{background:#fff;border-radius:10px;padding:12px 14px;min-width:160px;font-weight:700;text-align:center;box-shadow:0 4px 10px rgba(0,0,0,0.04)}
-
-    .socials{display:flex;justify-content:center;gap:18px;margin:18px 0}
-    .socials a{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:10px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
-    .socials svg{width:26px;height:26px;display:block}
-
-    .order-wrap{max-width:820px;margin:6px auto 30px;padding:18px;background:var(--card);border-radius:12px;box-shadow:0 8px 26px rgba(0,0,0,0.05)}
-    form{display:flex;flex-direction:column;gap:10px}
-    input[type="text"], input[type="tel"], textarea, input[type="number"]{
-      padding:10px;border-radius:8px;border:1px solid #ddd;font-size:14px;width:100%;
-    }
-    .items{display:flex;flex-direction:column;gap:8px}
-    .item-label{display:flex;align-items:center;gap:10px;background:#fafafa;padding:8px;border-radius:8px;border:1px solid #eee}
-    .item-label input{width:18px;height:18px}
-    .total-row{font-weight:800;text-align:center;padding:10px 0;font-size:18px;color:var(--accent)}
-    button[type="submit"]{background:var(--orange);color:#fff;border:none;padding:12px;border-radius:10px;cursor:pointer;font-weight:700}
-    button[type="submit"]:hover{background:#e67e22}
-
-    #contacts .contacts-wrap{display:flex;flex-direction:column;align-items:center;gap:6px;margin-top:8px;font-weight:600;color:#333}
-
-    footer{background:#111;color:#fff;padding:22px 18px;text-align:center;margin-top:28px}
-    footer .muted{color:rgba(255,255,255,0.75)}
-
-    .tg-float{position:fixed;right:22px;bottom:22px;z-index:1200}
-    .up-btn{position:fixed;right:22px;bottom:92px;width:52px;height:52px;border-radius:12px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;z-index:1200;box-shadow:0 8px 22px rgba(0,0,0,0.12);opacity:0;visibility:hidden;transition:.2s}
-    .up-btn.show{opacity:1;visibility:visible}
-
-    .img-fallback{background:#f0f2f4;border-radius:8px;display:block}
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+  <!-- HEADER -->
   <header>
     <div class="brand">
       <img src="https://www.dropbox.com/scl/fi/bil5nopj9j70ulpa4u1o8/photo_2023-08-20_21-18-33.jpg?rlkey=wwa67jsk4lu0idb1sn5alh3mk&st=hutysxgj&raw=1"
@@ -112,41 +32,69 @@
 
   <main>
     <!-- HEADLINE -->
-    <div class="headline section">
+    <section class="headline section">
       <h1>Обладнання, що створює враження</h1>
       <p>Проектори, акустика, фліпчарти та мікрофони — офіційна оренда у Львові</p>
-    </div>
+    </section>
 
     <!-- CATALOG -->
     <section id="catalog" class="section">
       <h3>Каталог обладнання</h3>
-     <div class="catalog">
-      <div class="card">
-        <img src="https://www.dropbox.com/scl/fi/hje3tjrmagm2y3bjjf0nw/proektor-magcubic-hy320.jpg?rlkey=cmuwd4u0vfj1xbkbfkkoc3giw&st=yo8j5jxu&raw=1" alt="Проектор">
-        <h4>Проектор</h4>
-        <p>Від 400 грн/день</p>
-        <p>Оренда сучасних проекторів з високою роздільною здатністю для демонстрації презентацій, відео та мультимедійних матеріалів.</p>
+      <div class="catalog">
+        <div class="card">
+          <img src="https://www.dropbox.com/scl/fi/hje3tjrmagm2y3bjjf0nw/proektor-magcubic-hy320.jpg?rlkey=cmuwd4u0vfj1xbkbfkkoc3giw&st=yo8j5jxu&raw=1" alt="Проектор">
+          <h4>Проектор</h4>
+          <p>Від 400 грн/день</p>
+          <p>Високоякісні проектори для презентацій, відео та мультимедіа.</p>
+        </div>
+        <div class="card">
+          <img src="https://www.dropbox.com/scl/fi/pywinvrj69ypjsejyti0g/33575291588853.webp?rlkey=c9lv0d2v6p1zdkognquxcmlh2&st=p4va8lpz&raw=1" alt="Акустична колонка Clarity">
+          <h4>Акустична колонка Clarity</h4>
+          <p>Від 700 грн/день</p>
+          <p>Потужний звук для будь-якого заходу.</p>
+        </div>
+        <div class="card">
+          <img src="https://www.dropbox.com/scl/fi/88yars39xb4ot3x1vnmt5/flipchart-na-trinozi.jpg?rlkey=hk0vck753ap5i4ucpxuvaftz3&st=njq8deja&raw=1" alt="Фліпчарт">
+          <h4>Фліпчарт</h4>
+          <p>Від 250 грн/день</p>
+          <p>Якісні фліпчарти для конференцій, презентацій та тренінгів.</p>
+        </div>
+        <div class="card">
+          <img src="https://www.dropbox.com/scl/fi/353koacp3lv7elz56po5e/2e6fb8fd-f5a6-4395-8a90-5a8bb48b0b97.webp?rlkey=9vnyc29knhzaxju97vhd7yc65&st=mo6z2ad3&raw=1" alt="Мікрофон">
+          <h4>Мікрофон</h4>
+          <p>Від 200 грн/день</p>
+          <p>Різноманітні мікрофони для будь-яких заходів.</p>
+        </div>
+
+        <!-- Нові позиції -->
+        <div class="card">
+          <img src="https://www.dropbox.com/scl/fi/1ef6basqzs12dj8f6pg6s/.png?rlkey=gzbgj25fivhb7utcgzhmwv66q&st=0ac0wezl&raw=1" alt="Ресівер">
+          <h4>Ресівер</h4>
+          <p>Від 200 грн/день</p>
+          <p>Компактний приймач для презентаційних систем.</p>
+        </div>
+        <div class="card">
+          <img src="https://www.dropbox.com/scl/fi/912esvf2gf69aop2x7poc/.png?rlkey=3xasq52izlsh3rg3fhoj9qn2b&st=7xcjegtr&raw=1" alt="Клікер">
+          
+          <h4>Клікер для презентацій</h4>
+          <p>Від 50 грн/день</p>
+          <p>Зручний пульт для перемикання слайдів.</p>
+        </div>
+        <div class="card">
+  <img src="https://www.dropbox.com/scl/fi/kfign44q0tbsvqnawx6ae/.png?rlkey=6x3akg6e6eco291u7ziqqme0a&st=mvgt1jqi&raw=1" alt="Екран для проектора">
+  <h4>Екран для проектора</h4>
+  <p>Від 300 грн/день</p>
+  <p>Портативні та стаціонарні екрани для якісної демонстрації зображення.</p>
+</div>
+        <div class="card">
+          <img src="https://www.dropbox.com/scl/fi/sihgy1dsruvrnwqjbqs0f/product_image_72228_303063-400x400.jpg?rlkey=4dx3qetm831wbhoass33zwhjk&st=cwxq2d8g&raw=1" alt="Папір для фліпчарту">
+          <h4>Папір для фліпчарту</h4>
+          <p>120 грн/пачка</p>
+          <p>Стандартний білий папір, 10 аркушів у пачці.</p>
+        </div>
+        
       </div>
-      <div class="card">
-        <img src="https://www.dropbox.com/scl/fi/pywinvrj69ypjsejyti0g/33575291588853.webp?rlkey=c9lv0d2v6p1zdkognquxcmlh2&st=p4va8lpz&raw=1" alt="Акустична колонка Clarity">
-        <h4>Акустична колонка Clarity</h4>
-        <p>Від 700 грн/день</p>
-        <p>Потужні колонки для якісного звуку на вашому заході.</p>
-      </div>
-      <div class="card">
-        <img src="https://www.dropbox.com/scl/fi/88yars39xb4ot3x1vnmt5/flipchart-na-trinozi.jpg?rlkey=hk0vck753ap5i4ucpxuvaftz3&st=njq8deja&raw=1" alt="Фліпчарт">
-        <h4>Фліпчарт</h4>
-        <p>Від 250 грн/день</p>
-        <p>Пропонуємо в оренду якісні фліпчарти для конференцій, презентацій та тренінгів.</p>
-      </div>
-      <div class="card">
-        <img src="https://www.dropbox.com/scl/fi/353koacp3lv7elz56po5e/2e6fb8fd-f5a6-4395-8a90-5a8bb48b0b97.webp?rlkey=9vnyc29knhzaxju97vhd7yc65&st=mo6z2ad3&raw=1" alt="Мікрофон">
-        <h4>Мікрофон</h4>
-        <p>Від 200 грн/день</p>
-        <p>Різноманітні мікрофони для будь-яких заходів.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
     <!-- ADVANTAGES -->
     <section id="advantages" class="section">
@@ -159,160 +107,192 @@
         <div class="adv">✔ Гнучкі ціни</div>
       </div>
     </section>
-<style>
-  .socials {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 15px;
-  }
 
-  .socials a svg {
-    width: 40px;
-    height: 40px;
-    transition: transform 0.2s ease, fill 0.2s ease;
-  }
+    <!-- SOCIALS BEFORE ORDER -->
+    <section class="section" aria-label="соціальні мережі">
+      <h3>Ми у соцмережах</h3>
+      <div class="socials" role="list">
 
-  /* Базовий колір */
-  .socials a svg { fill: #555; }
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/profile.php?id=61580244497506" title="Facebook" target="_blank" aria-label="Facebook">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 
+            24H12.82v-9.294H9.692V11.01h3.128V8.413c0-3.1 
+            1.893-4.788 4.659-4.788 1.325 0 2.464.099 
+            2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 
+            1.763v2.31h3.587l-.467 3.696h-3.12V24h6.116C23.403 
+            24 24 23.403 24 22.674V1.326C24 
+            .597 23.403 0 22.675 0z"/>
+          </svg>
+        </a>
 
-  /* Ефекти при наведенні */
-  .socials a[aria-label="Facebook"]:hover svg { fill: #1877F2; transform: scale(1.2); }
-  .socials a[aria-label="Instagram"]:hover svg { fill: url(#IGgrad); transform: scale(1.2); }
-  .socials a[aria-label="TikTok"]:hover svg { fill: #000000; transform: scale(1.2); }
-  .socials a[aria-label="Threads"]:hover svg { fill: #000000; transform: scale(1.2); }
-  .socials a[aria-label="LinkedIn"]:hover svg { fill: #0077B5; transform: scale(1.2); }
-</style>
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/repre_zentbiz/" title="Instagram" target="_blank" aria-label="Instagram">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="IGgrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#feda75"/>
+                <stop offset="25%" stop-color="#fa7e1e"/>
+                <stop offset="50%" stop-color="#d62976"/>
+                <stop offset="75%" stop-color="#962fbf"/>
+                <stop offset="100%" stop-color="#4f5bd5"/>
+              </linearGradient>
+            </defs>
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 
+            1.366.062 2.633.35 3.608 1.325.975.975 1.262 
+            2.242 1.324 3.608.058 1.266.07 1.646.07 
+            4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 
+            2.633-1.324 3.608-.975.975-2.242 1.262-3.608 
+            1.324-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.324-.975-.975-1.262-2.242-1.324-3.608C2.175 
+            15.747 2.163 15.367 2.163 
+            12s.012-3.584.07-4.85c.062-1.366.35-2.633 
+            1.324-3.608C4.532 2.583 5.799 2.296 7.165 
+            2.234 8.431 2.176 8.811 2.163 
+            12 2.163zM12 5.905a6.095 6.095 0 1 0 0 12.19 6.095 
+            6.095 0 0 0 0-12.19zM18.406 5.16a1.386 
+            1.386 0 1 1-2.772 0 1.386 1.386 0 0 1 2.772 0z"/>
+          </svg>
+        </a>
 
-<!-- SOCIALS BEFORE ORDER -->
-<section class="section" aria-label="соціальні мережі">
-  <h3>Ми у соцмережах</h3>
-  <div class="socials" role="list">
-    
-    <!-- Facebook -->
-    <a href="https://www.facebook.com/profile.php?id=61580244497506" title="Facebook" target="_blank" aria-label="Facebook">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 
-        23.403.597 24 1.326 
-        24H12.82v-9.294H9.692V11.01h3.128V8.413c0-3.1 
-        1.893-4.788 4.659-4.788 1.325 0 2.464.099 
-        2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 
-        1.763v2.31h3.587l-.467 3.696h-3.12V24h6.116C23.403 
-        24 24 23.403 24 22.674V1.326C24 
-        .597 23.403 0 22.675 0z"/>
-      </svg>
-    </a>
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@repre_zentbiz" title="TikTok" target="_blank" aria-label="TikTok">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+            <path d="M232 64v47.71a95.8 95.8 0 0 1-55.82-17.8V168a64 
+            64 0 1 1-64-64 65.12 65.12 0 0 1 11.72 
+            1V121a40 40 0 1 0 28 38V24h40a56 56 0 0 0 
+            56 56z"/>
+          </svg>
+        </a>
 
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/repre_zentbiz/" title="Instagram" target="_blank" aria-label="Instagram">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <defs>
-          <linearGradient id="IGgrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#feda75"/>
-            <stop offset="25%" stop-color="#fa7e1e"/>
-            <stop offset="50%" stop-color="#d62976"/>
-            <stop offset="75%" stop-color="#962fbf"/>
-            <stop offset="100%" stop-color="#4f5bd5"/>
-          </linearGradient>
-        </defs>
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 
-        1.366.062 2.633.35 3.608 1.325.975.975 1.262 
-        2.242 1.324 3.608.058 1.266.07 1.646.07 
-        4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 
-        2.633-1.324 3.608-.975.975-2.242 1.262-3.608 
-        1.324-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.324-.975-.975-1.262-2.242-1.324-3.608C2.175 
-        15.747 2.163 15.367 2.163 
-        12s.012-3.584.07-4.85c.062-1.366.35-2.633 
-        1.324-3.608C4.532 2.583 5.799 2.296 7.165 
-        2.234 8.431 2.176 8.811 2.163 
-        12 2.163zM12 5.905a6.095 6.095 0 1 0 0 12.19 6.095 
-        6.095 0 0 0 0-12.19zM18.406 5.16a1.386 
-        1.386 0 1 1-2.772 0 1.386 1.386 0 0 1 2.772 0z"/>
-      </svg>
-    </a>
+        <!-- Threads -->
+        <a href="https://www.threads.net/@repre_zentbiz" title="Threads" target="_blank" aria-label="Threads">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M12 2C6.477 2 2 6.478 2 12s4.477 
+            10 10 10 10-4.478 10-10S17.523 2 
+            12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 
+            8-8 8 3.589 8 8-3.589 8-8 
+            8zm.09-13c-2.28 0-4.14 1.86-4.14 
+            4.14h1.88c0-1.26 1-2.26 2.26-2.26 1.19 0 
+            2.19.93 2.25 2.1-.08 1.11-.82 
+            1.72-2.11 1.72h-1.05v1.66h1.04c1.48 
+            0 2.45.9 2.45 2.29 0 1.32-1.07 
+            2.39-2.39 2.39-1.36 0-2.33-.92-2.41-2.21H9.03c.08 
+            2.3 1.88 4.01 4.07 4.01 2.32 0 
+            4.2-1.88 4.2-4.2 0-1.53-.85-2.86-2.14-3.58 
+            1.01-.7 1.63-1.83 1.63-3.1 0-2.28-1.85-4.13-4.13-4.13z"/>
+          </svg>
+        </a>
 
-    <!-- TikTok -->
-    <a href="https://www.tiktok.com/@repre_zentbiz" title="TikTok" target="_blank" aria-label="TikTok">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-        <path d="M232 64v47.71a95.8 95.8 0 0 1-55.82-17.8V168a64 
-        64 0 1 1-64-64 65.12 65.12 0 0 1 11.72 
-        1V121a40 40 0 1 0 28 38V24h40a56 56 0 0 0 
-        56 56z"/>
-      </svg>
-    </a>
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/reprezent-biz-822004384/" title="LinkedIn" target="_blank" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M19 0h-14C2.24 0 0 2.24 
+            0 5v14c0 2.76 2.24 5 5 
+            5h14c2.76 0 5-2.24 
+            5-5V5c0-2.76-2.24-5-5-5zM7.12 
+            20.45H3.56V9h3.56v11.45zM5.34 
+            7.56c-1.14 0-2.06-.93-2.06-2.06s.92-2.06 
+            2.06-2.06c1.14 0 2.06.93 
+            2.06 2.06s-.92 2.06-2.06 
+            2.06zM20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 
+            0-2.14 1.45-2.14 2.95v5.67h-3.56V9h3.42v1.56h.05c.48-.9 
+            1.66-1.86 3.42-1.86 3.66 
+            0 4.34 2.41 4.34 5.54v6.21z"/>
+          </svg>
+        </a>
 
-    <!-- Threads -->
-    <a href="https://www.threads.net/@repre_zentbiz" title="Threads" target="_blank" aria-label="Threads">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M12 2C6.477 2 2 6.478 2 12s4.477 
-        10 10 10 10-4.478 10-10S17.523 2 
-        12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 
-        8-8 8 3.589 8 8-3.589 8-8 
-        8zm.09-13c-2.28 0-4.14 1.86-4.14 
-        4.14h1.88c0-1.26 1-2.26 2.26-2.26 1.19 0 
-        2.19.93 2.25 2.1-.08 1.11-.82 
-        1.72-2.11 1.72h-1.05v1.66h1.04c1.48 
-        0 2.45.9 2.45 2.29 0 1.32-1.07 
-        2.39-2.39 2.39-1.36 0-2.33-.92-2.41-2.21H9.03c.08 
-        2.3 1.88 4.01 4.07 4.01 2.32 0 
-        4.2-1.88 4.2-4.2 0-1.53-.85-2.86-2.14-3.58 
-        1.01-.7 1.63-1.83 1.63-3.1 0-2.28-1.85-4.13-4.13-4.13z"/>
-      </svg>
-    </a>
-
-    <!-- LinkedIn -->
-    <a href="https://www.linkedin.com/in/reprezent-biz-822004384/" title="LinkedIn" target="_blank" aria-label="LinkedIn">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-        <path d="M19 0h-14C2.24 0 0 2.24 
-        0 5v14c0 2.76 2.24 5 5 
-        5h14c2.76 0 5-2.24 
-        5-5V5c0-2.76-2.24-5-5-5zM7.12 
-        20.45H3.56V9h3.56v11.45zM5.34 
-        7.56c-1.14 0-2.06-.93-2.06-2.06s.92-2.06 
-        2.06-2.06c1.14 0 2.06.93 
-        2.06 2.06s-.92 2.06-2.06 
-        2.06zM20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 
-        0-2.14 1.45-2.14 2.95v5.67h-3.56V9h3.42v1.56h.05c.48-.9 
-        1.66-1.86 3.42-1.86 3.66 
-        0 4.34 2.41 4.34 5.54v6.21z"/>
-      </svg>
-    </a>
-
-  </div>
-</section>
-
-
-
-    <!-- ORDER -->
-    <section id="order" class="section">
-      <div class="order-wrap">
-        <h3 style="text-align:center;margin:0 0 12px">Зробити замовлення</h3>
-        <form id="orderForm" aria-label="Форма замовлення">
-          <label>Ім’я</label>
-          <input id="name" type="text" placeholder="Ваше ім’я" required>
-
-          <label>Телефон</label>
-          <input id="phone" type="tel" placeholder="+38 (0__) ___-__-__" required>
-
-          <label>Оберіть обладнання</label>
-          <div class="items" role="group">
-            <label class="item-label"><input type="checkbox" class="item-chk" data-price="400" data-name="Проектор"> Проектор — 400 грн/день</label>
-            <label class="item-label"><input type="checkbox" class="item-chk" data-price="700" data-name="Акустична колонка"> Акустична колонка — 700 грн/день</label>
-            <label class="item-label"><input type="checkbox" class="item-chk" data-price="250" data-name="Фліпчарт"> Фліпчарт — 250 грн/день</label>
-            <label class="item-label"><input type="checkbox" class="item-chk" data-price="200" data-name="Мікрофон"> Мікрофон — 200 грн/день</label>
-          </div>
-
-          <label>Кількість днів</label>
-          <input id="days" type="number" value="1" min="1">
-
-          <label>Додатково (повідомлення)</label>
-          <textarea id="message" placeholder="Ваші побажання..."></textarea>
-
-          <div class="total-row">Сума: <span id="total">0</span> грн</div>
-          <button type="submit">Замовити</button>
-        </form>
       </div>
+    </section>
+
+    <!-- ORDER FORM -->
+    <section id="order" class="section">
+      <h3>Замовлення обладнання</h3>
+
+      <form id="orderForm">
+        <div class="form-group">
+          <label for="name">Ім’я:</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Телефон:</label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+
+        <div class="form-group">
+          <label for="rentalDate">Дата оренди:</label>
+          <input type="date" id="rentalDate" name="rentalDate" required>
+        </div>
+
+        <!-- Позиції оренди -->
+        <div class="item-row">
+          <label class="item-label">
+            <input type="checkbox" class="item-chk" data-price="400" data-name="Проектор" data-type="rental"> Проектор — 400 грн/доба
+          </label>
+          <input type="number" class="item-qty" min="1" value="1">
+        </div>
+
+        <div class="item-row">
+          <label class="item-label">
+            <input type="checkbox" class="item-chk" data-price="700" data-name="Музична колонка" data-type="rental"> Музична колонка — 700 грн/доба
+          </label>
+          <input type="number" class="item-qty" min="1" value="1">
+        </div>
+
+        <div class="item-row">
+          <label class="item-label">
+            <input type="checkbox" class="item-chk" data-price="250" data-name="Фліпчарт" data-type="rental"> Фліпчарт — 250 грн/доба
+          </label>
+          <input type="number" class="item-qty" min="1" value="1">
+        </div>
+
+        <div class="item-row">
+          <label class="item-label">
+            <input type="checkbox" class="item-chk" data-price="200" data-name="Мікрофон" data-type="rental"> Мікрофон — 200 грн/доба
+          </label>
+          <input type="number" class="item-qty" min="1" value="1">
+        </div>
+
+        <!-- Нові позиції оренди -->
+        <div class="item-row">
+          <label class="item-label">
+            <input type="checkbox" class="item-chk" data-price="150" data-name="Ресівер" data-type="rental"> Ресівер — 150 грн/доба
+          </label>
+          <input type="number" class="item-qty" min="1" value="1">
+        </div>
+
+        <div class="item-row">
+          <label class="item-label">
+            <input type="checkbox" class="item-chk" data-price="100" data-name="Клікер" data-type="rental"> Клікер — 100 грн/доба
+          </label>
+          <input type="number" class="item-qty" min="1" value="1">
+        </div>
+<div class="item-row">
+  <label class="item-label">
+    <input type="checkbox" class="item-chk" data-price="300" data-name="Екран для проектора" data-type="rental"> Екран для проектора — 300 грн/доба
+  </label>
+  <input type="number" class="item-qty" min="1" value="1">
+</div>
+
+        <!-- Продаж -->
+        <div class="item-row">
+          <label class="item-label">
+            <input type="checkbox" class="item-chk" data-price="120" data-name="Папір для фліпчарту" data-type="sale"> Папір для фліпчарту — 120 грн/пачка
+          </label>
+          <input type="number" class="item-qty" min="1" value="1">
+        </div>
+
+        <div class="form-group">
+          <p>Разом: <span id="total">0</span> грн</p>
+        </div>
+
+        <div class="form-group">
+          <label for="details">Деталі:</label>
+          <textarea id="details" name="details" rows="3" placeholder="Ваші побажання..."></textarea>
+        </div>
+
+        <button type="submit">Замовити</button>
+      </form>
     </section>
 
     <!-- CONTACTS -->
@@ -320,7 +300,7 @@
       <h3>Контакти</h3>
       <div class="contacts-wrap">
         <div>Телефон: +38 093 130 78 83</div>
-       <div>Email:reprezentbiz@gmail.com</div>
+        <div>Email: reprezentbiz@gmail.com</div>
         <div>Адреса: Львів, вул. Хоткевича 10</div>
       </div>
     </section>
@@ -332,79 +312,10 @@
   </footer>
 
   <div class="tg-float">
-    <a href="https://t.me/reprezentbot" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" width="48" height="48"></a>
+    <a href="https://t.me/reprezentbot" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" width="48" height="48" alt="Telegram"></a>
   </div>
-  <div class="up-btn" id="upBtn">&#8679;</div>
+  <div class="up-btn" id="upBtn" title="Вгору">&#8679;</div>
 
-  <script>
-    // BURGER MENU
-    const burger = document.getElementById('burger');
-    const nav = document.getElementById('nav');
-    burger?.addEventListener('click',()=>nav.classList.toggle('show'));
-
-    // SCROLL UP BUTTON
-    const upBtn = document.getElementById('upBtn');
-    window.addEventListener('scroll',()=>{if(window.scrollY>300){upBtn.classList.add('show')}else{upBtn.classList.remove('show')}});
-    upBtn?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-
-    // CALCULATE TOTAL
-    const itemChecks = Array.from(document.querySelectorAll('.item-chk'));
-    const totalEl = document.getElementById('total');
-    const daysInput = document.getElementById('days');
-    function updateTotal(){
-      let sum=0;const days=Math.max(1,Number(daysInput.value)||1);
-      itemChecks.forEach(c=>{if(c.checked){sum+=Number(c.dataset.price)}})
-      totalEl.textContent=sum*days;
-    }
-    itemChecks.forEach(c=>c.addEventListener('change',updateTotal));
-    daysInput.addEventListener('input',updateTotal);
-    updateTotal();
-
-    // SEND ORDER TO TELEGRAM
-    const BOT_TOKEN = "8488773081:AAGZOt8IBYEzO4Q5iL63agF5PvuJVxVSwvY"; 
-    const CHAT_ID = "598331739"; 
-    const orderForm = document.getElementById('orderForm');
-    orderForm?.addEventListener('submit', function(e){
-      e.preventDefault();
-
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const days = Math.max(1, Number(document.getElementById('days').value) || 1);
-      const message = document.getElementById('message').value.trim();
-      const chosen = Array.from(document.querySelectorAll('.item-chk'))
-        .filter(c => c.checked)
-        .map(c => c.dataset.name + ` (${c.dataset.price} грн/д)`);
-
-      if(!name || !phone){ alert('Будь ласка, вкажіть ім’я і телефон.'); return; }
-
-      const total = document.getElementById('total').textContent || '0';
-      const text = `
-🆕 Нове замовлення!
-👤 Ім’я: ${name}
-📞 Телефон: ${phone}
-📦 Обладнання: ${chosen.join(', ') || '—'}
-📅 Кількість днів: ${days}
-💰 Сума: ${total} грн
-✍ Деталі: ${message || '—'}
-      `;
-
-      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: CHAT_ID, text: text })
-      })
-      .then(r => r.json())
-      .then(res => {
-        if(res.ok){
-          alert("✅ Замовлення надіслано! Дякуємо.");
-          orderForm.reset();
-          totalEl.textContent = "0";
-        } else {
-          alert("❌ Помилка: " + (res.description || "невідома"));
-        }
-      })
-      .catch(err => { console.error(err); alert("❌ Проблема з мережею."); });
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
