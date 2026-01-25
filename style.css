@@ -152,6 +152,63 @@ h3{
   text-align:center;
   box-shadow:0 4px 10px rgba(0,0,0,0.08);
 }
+/* REVIEWS */
+.reviews {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.review-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+}
+
+.review-card .stars {
+  color: #f5b301;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.review-card span {
+  display: block;
+  margin-top: 10px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.reviews-note {
+  margin-top: 15px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+/* TERMS */
+.terms {
+  background: #f9f9f9;
+  border-radius: 16px;
+}
+
+.terms-list {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: auto;
+}
+
+.terms-list li {
+  padding: 10px 0;
+  font-size: 16px;
+}
+
+.terms-warning {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 600;
+  color: #c0392b;
+}
 
 /* SOCIALS (залишено як було) */
 .socials{
@@ -249,6 +306,43 @@ footer{
   font-size:15px;
 }
 footer .muted{color:rgba(255,255,255,0.75)}
+/* === Стилізація поля Дати замовлення === */
+
+/* Спеціальний контейнер для дати, щоб виділити його візуально */
+.date-input-wrap {
+  background: rgba(30, 58, 138, 0.05); /* легкий блакитний фон */
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px dashed var(--accent); /* пунктирна рамка кольору бренду */
+  margin-bottom: 15px;
+}
+
+.date-input-wrap label {
+  display: block;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 8px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Саме поле вибору дати */
+input[type="date"], 
+.order-date-field {
+  border: 2px solid var(--accent) !important;
+  background-color: #fff !important;
+  font-weight: 700 !important;
+  font-size: 18px !important; /* збільшений розмір для читабельності */
+  color: var(--accent) !important;
+  cursor: pointer;
+  outline: none;
+}
+
+input[type="date"]:focus {
+  box-shadow: 0 0 10px rgba(30, 58, 138, 0.2);
+  border-color: var(--orange) !important; /* при натисканні змінюємо на помаранчевий */
+}
 
 /* FLOAT BUTTONS */
 .tg-float{position:fixed;right:22px;bottom:22px;z-index:1200}
