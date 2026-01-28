@@ -153,3 +153,14 @@ phoneInput.addEventListener('click', function() {
         phoneInput.setSelectionRange(4, 4);
     }
 });
+<script>
+window.addEventListener("scroll", function() {
+  const btn = document.querySelector(".order-top");
+  if (window.scrollY > 150) {
+    btn.style.display = "block";
+  } else {
+    btn.style.display = "none";
+  }
+});
+</script>
+
