@@ -130,3 +130,26 @@ ${chosen.join('\n')}
     });
   }
 });
+const phoneInput = document.getElementById('phone');
+
+phoneInput.addEventListener('input', function (e) {
+    // Якщо користувач намагається видалити префікс, повертаємо його
+    if (!phoneInput.value.startsWith('+380')) {
+        phoneInput.value = '+380';
+    }
+    
+    // Дозволяємо лише цифри після префікса (видаляємо все, що не є цифрами)
+    let prefix = '+380';
+    let currentVal = phoneInput.value;
+    let numbersOnly = currentVal.substring(prefix.length).replace(/\D/g, '');
+    
+    // Обмежуємо довжину (9 цифр після +380)
+    phoneInput.value = prefix + numbersOnly.substring(0, 9);
+});
+
+// Запобігаємо встановленню курсору перед +380 для зручності
+phoneInput.addEventListener('click', function() {
+    if (phoneInput.selectionStart < 4) {
+        phoneInput.setSelectionRange(4, 4);
+    }
+});
