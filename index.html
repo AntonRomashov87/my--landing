@@ -5,334 +5,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Оренда обладнання — RepreZentbiz</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
   <style>
-    /* КАТАЛОГ: 4 в ряд */
-    .catalog {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-      padding: 20px 0;
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; margin: 0; background: #f4f4f4; color: #333; line-height: 1.6; }
+    
+    header { background: #fff; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; }
+    nav a { margin-left: 15px; text-decoration: none; color: #333; font-weight: 600; font-size: 0.9rem; }
+
+    .order-top {
+      position: fixed; top: 85px; left: 20px; background: #ff5a00; color: white;
+      padding: 10px 18px; border-radius: 8px; font-size: 14px; font-weight: 600;
+      text-decoration: none; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
 
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      padding: 15px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      transition: transform 0.3s ease;
-    }
-    .card:hover { transform: translateY(-5px); }
+    .section { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
+    h3 { text-align: center; margin-bottom: 30px; font-size: 1.8rem; }
 
-    .card img {
-      width: 100%;
-      height: 160px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 12px;
-    }
+    /* КАТАЛОГ */
+    .catalog { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+    .card { background: #fff; border-radius: 12px; padding: 15px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; height: 100%; }
+    .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 8px; margin-bottom: 12px; }
 
-    .card h4 { font-size: 1.1rem; margin: 5px 0; color: #333; }
-    .card p { font-size: 0.9rem; color: #666; flex-grow: 1; }
+    /* ВІДГУКИ (ПОВНІ) */
+    .reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .review-card { background: #fff; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-left: 5px solid #ffcc00; }
+    .stars { color: #ffcc00; margin-bottom: 10px; font-size: 1.2rem; }
+    .review-card span { display: block; margin-top: 10px; font-size: 0.85rem; color: #777; font-weight: 600; }
 
-    /* УМОВИ ОРЕНДИ */
-    .terms-container {
-      background: #ffffff;
-      border: 2px solid #ffcc00;
-      border-radius: 15px;
-      padding: 25px;
-      margin: 30px 0;
-    }
-    .terms-list { list-style: none; padding: 0; margin: 0; }
-    .terms-list li { 
-      font-size: 1.05rem; 
-      margin-bottom: 15px; 
-      display: flex; 
-      align-items: center;
-    }
+    /* УМОВИ (ПОВНІ) */
+    .terms-container { background: #fff; border: 2px solid #ffcc00; border-radius: 15px; padding: 25px; margin-top: 20px; }
+    .terms-list { list-style: none; padding: 0; }
+    .terms-list li { margin-bottom: 15px; display: flex; align-items: center; }
     .terms-list li span { margin-right: 15px; font-size: 1.4rem; }
 
-    /* ФОРМА: Поле побажань */
-    .form-group textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-family: inherit;
-      resize: vertical;
-      min-height: 80px;
-    }
+    /* ПЕРЕВАГИ (ПОВНІ) */
+    .advantages { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .adv { background: #333; color: #fff; padding: 10px 20px; border-radius: 50px; font-size: 0.9rem; font-weight: 600; }
 
-    /* СОЦМЕРЕЖІ */
-    .socials { display: flex; justify-content: center; gap: 20px; padding: 25px 0; }
-    .socials a svg { width: 38px; height: 38px; transition: 0.3s; }
-    .fb svg { fill: #1877F2; }
-    .ig svg { fill: #E4405F; }
-    .tt svg { fill: #000000; }
-    .th svg { fill: #000000; }
-    .ln svg { fill: #0077B5; }
-    .socials a:hover { transform: scale(1.2); }
+    /* ФОРМА */
+    .item-row { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 10px; margin-bottom: 8px; border-radius: 8px; border: 1px solid #eee; }
+    .item-qty { width: 60px; padding: 5px; }
 
-    /* АДАПТИВНІСТЬ */
+    /* СОЦМЕРЕЖІ (УСІ 5) */
+    .socials { display: flex; justify-content: center; gap: 15px; padding: 20px; flex-wrap: wrap; }
+    .socials a svg { width: 35px; height: 35px; transition: 0.3s; }
+    .fb svg { fill: #1877F2; } .ig svg { fill: #E4405F; } .tt svg { fill: #000; } .th svg { fill: #000; } .ln svg { fill: #0077B5; }
+
+    .tg-float { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
+
     @media (max-width: 1024px) { .catalog { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 768px) { 
-        .catalog { grid-template-columns: repeat(2, 1fr); }
-        .terms-list li { font-size: 0.95rem; }
-    }
+    @media (max-width: 600px) { .catalog { grid-template-columns: 1fr; } nav { display: none; } .order-top { top: auto; bottom: 90px; } }
   </style>
 </head>
 <body>
-  <a href="#order" class="order-top">
-  Замовити
-</a>
+
+  <a href="#order" class="order-top">Швидке замовлення ⚡</a>
+
   <header>
     <div class="brand">
       <img src="https://www.dropbox.com/scl/fi/bil5nopj9j70ulpa4u1o8/photo_2023-08-20_21-18-33.jpg?rlkey=wwa67jsk4lu0idb1sn5alh3mk&st=hutysxgj&raw=1" alt="RepreZent logo">
       <div class="title">RepreZentbiz</div>
     </div>
-    <nav id="nav">
+    <nav>
       <a href="#catalog">Каталог</a>
       <a href="#terms">Умови</a>
-     <a href="#advantages">Переваги</a>
+      <a href="#advantages">Переваги</a>
       <a href="#order">Замовити</a>
       <a href="#socials">Соцмережі</a>
       <a href="#contacts">Контакти</a>
     </nav>
-    <div class="burger" id="burger"><span></span><span></span><span></span></div>
   </header>
 
   <main>
-    <section class="headline section">
+    <section class="section" style="text-align:center;">
       <h1>Обладнання, що створює враження</h1>
-      <p>Проектори, акустика, фліпчарти та мікрофони — оренда у Львові</p>
+      <p>Оренда у Львові та області</p>
     </section>
 
     <section id="catalog" class="section">
       <h3>Каталог обладнання</h3>
       <div class="catalog">
-        <div class="card">
-          <img src="https://www.dropbox.com/scl/fi/hje3tjrmagm2y3bjjf0nw/proektor-magcubic-hy320.jpg?rlkey=cmuwd4u0vfj1xbkbfkkoc3giw&st=yo8j5jxu&raw=1" alt="Проектор">
-          <h4>Проектор</h4>
-          <p>Від 400 грн/день. Високоякісне зображення.</p>
-        </div>
-        <div class="card">
-          <img src="https://www.dropbox.com/scl/fi/pywinvrj69ypjsejyti0g/33575291588853.webp?rlkey=c9lv0d2v6p1zdkognquxcmlh2&st=p4va8lpz&raw=1" alt="Колонка">
-          <h4>Акустична колонка</h4>
-          <p>Від 700 грн/день. Потужний звук Clarity.</p>
-        </div>
-        <div class="card">
-          <img src="https://www.dropbox.com/scl/fi/88yars39xb4ot3x1vnmt5/flipchart-na-trinozi.jpg?rlkey=hk0vck753ap5i4ucpxuvaftz3&st=njq8deja&raw=1" alt="Фліпчарт">
-          <h4>Фліпчарт</h4>
-          <p>Від 250 грн/день. На тринозі для тренінгів.</p>
-        </div>
-        <div class="card">
-          <img src="https://www.dropbox.com/scl/fi/353koacp3lv7elz56po5e/2e6fb8fd-f5a6-4395-8a90-5a8bb48b0b97.webp?rlkey=9vnyc29knhzaxju97vhd7yc65&st=mo6z2ad3&raw=1" alt="Мікрофон">
-          <h4>Мікрофон</h4>
-          <p>Від 200 грн/день. Радіосистеми та провідні.</p>
-        </div>
-        <div class="card">
-          <img src="https://www.dropbox.com/scl/fi/1ef6basqzs12dj8f6pg6s/.png?rlkey=gzbgj25fivhb7utcgzhmwv66q&st=0ac0wezl&raw=1" alt="Ресівер">
-          <h4>Ресівер</h4>
-          <p>Від 200 грн/день. Приймач для сигналу.</p>
-        </div>
-        <div class="card">
-          <img src="https://www.dropbox.com/scl/fi/4x709t46rc2dpnojvrh2r/photo_2026-01-25_20-41-39.jpg?rlkey=91gdcwlt999d3lgohl1q1f3ns&st=fdl9m7qf&raw=1" alt="Каркас">
-          <h4>Каркас для банерів</h4>
-          <p>300 грн/день. Для фотозон та банерів.</p>
-        </div>
-        <div class="card">
-          <img src="https://www.dropbox.com/scl/fi/kfign44q0tbsvqnawx6ae/.png?rlkey=6x3akg6e6eco291u7ziqqme0a&st=mvgt1jqi&raw=1" alt="Екран">
-          <h4>Екран для проектора</h4>
-          <p>Від 300 грн/день. Полотно на штативі.</p>
-        </div>
-        <div class="card">
-          <img src="https://www.dropbox.com/scl/fi/sihgy1dsruvrnwqjbqs0f/product_image_72228_303063-400x400.jpg?rlkey=4dx3qetm831wbhoass33zwhjk&st=cwxq2d8g&raw=1" alt="Папір">
-          <h4>Папір для фліпчарту</h4>
-          <p>120 грн/пачка. 10 аркушів для роботи.</p>
-        </div>
+        <div class="card"><img src="https://www.dropbox.com/scl/fi/hje3tjrmagm2y3bjjf0nw/proektor-magcubic-hy320.jpg?rlkey=cmuwd4u0vfj1xbkbfkkoc3giw&st=yo8j5jxu&raw=1" alt="Проектор"><h4>Проектор</h4><p>Від 400 грн/день</p><p>Високоякісні проектори для презентацій.</p></div>
+        <div class="card"><img src="https://www.dropbox.com/scl/fi/pywinvrj69ypjsejyti0g/33575291588853.webp?rlkey=c9lv0d2v6p1zdkognquxcmlh2&st=p4va8lpz&raw=1" alt="Колонка"><h4>Акустична колонка</h4><p>Від 700 грн/день</p><p>Потужний звук для заходу.</p></div>
+        <div class="card"><img src="https://www.dropbox.com/scl/fi/88yars39xb4ot3x1vnmt5/flipchart-na-trinozi.jpg?rlkey=hk0vck753ap5i4ucpxuvaftz3&st=njq8deja&raw=1" alt="Фліпчарт"><h4>Фліпчарт</h4><p>Від 250 грн/день</p><p>Для конференцій та тренінгів.</p></div>
+        <div class="card"><img src="https://www.dropbox.com/scl/fi/353koacp3lv7elz56po5e/2e6fb8fd-f5a6-4395-8a90-5a8bb48b0b97.webp?rlkey=9vnyc29knhzaxju97vhd7yc65&st=mo6z2ad3&raw=1" alt="Мікрофон"><h4>Мікрофон</h4><p>Від 200 грн/день</p><p>Для будь-яких виступів.</p></div>
+        <div class="card"><img src="https://www.dropbox.com/scl/fi/1ef6basqzs12dj8f6pg6s/.png?rlkey=gzbgj25fivhb7utcgzhmwv66q&st=0ac0wezl&raw=1" alt="Ресівер"><h4>Ресівер</h4><p>Від 200 грн/день</p><p>Компактний приймач.</p></div>
+        <div class="card"><img src="https://www.dropbox.com/scl/fi/4x709t46rc2dpnojvrh2r/photo_2026-01-25_20-41-39.jpg?rlkey=91gdcwlt999d3lgohl1q1f3ns&st=fdl9m7qf&raw=1" alt="Каркас"><h4>Каркас для банерів</h4><p>300 грн/день</p><p>Банери, фотозона, екран.</p></div>
+        <div class="card"><img src="https://www.dropbox.com/scl/fi/kfign44q0tbsvqnawx6ae/.png?rlkey=6x3akg6e6eco291u7ziqqme0a&st=mvgt1jqi&raw=1" alt="Екран"><h4>Екран для проектора</h4><p>Від 300 грн/день</p><p>Якісна демонстрація зображення.</p></div>
+        <div class="card"><img src="https://www.dropbox.com/scl/fi/sihgy1dsruvrnwqjbqs0f/product_image_72228_303063-400x400.jpg?rlkey=4dx3qetm831wbhoass33zwhjk&st=cwxq2d8g&raw=1" alt="Папір"><h4>Папір для фліпчарту</h4><p>120 грн/пачка</p><p>Стандартний білий, 10 арк.</p></div>
       </div>
     </section>
-</div>
-    </section>
-<!-- REVIEWS -->
-<section id="reviews" class="section">
-  <h3>Відгуки наших клієнтів</h3>
 
-  <div class="reviews">
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p>Все привезли вчасно, швидко підключили. Проектор і звук — супер. Рекомендуємо!</p>
-      <span>Олена, корпоративний захід</span>
-    </div>
+    <section id="reviews" class="section">
+      <h3>Відгуки наших клієнтів</h3>
+      <div class="reviews">
+        <div class="review-card"><div class="stars">★★★★★</div><p>Все привезли вчасно, швидко підключили. Проектор і звук — супер. Рекомендуємо!</p><span>Олена, корпоративний захід</span></div>
+        <div class="review-card"><div class="stars">★★★★★</div><p>Брали фліпчарти та мікрофони для тренінгу. Дуже зручно, сервіс на рівні.</p><span>Андрій, бізнес-тренінг</span></div>
+        <div class="review-card"><div class="stars">★★★★★</div><p>Професійний підхід і нормальні ціни. Обладнання чисте й справне.</p><span>Ірина, івент-менеджер</span></div>
+      </div>
+    </section>
 
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p>Брали фліпчарти та мікрофони для тренінгу. Дуже зручно, сервіс на рівні.</p>
-      <span>Андрій, бізнес-тренінг</span>
-    </div>
-
-    <div class="review-card">
-      <div class="stars">★★★★★</div>
-      <p>Професійний підхід і нормальні ціни. Обладнання чисте й справне.</p>
-      <span>Ірина, івент-менеджер</span>
-    </div>
-  </div>
-</section>
-    
     <section id="terms" class="section">
       <h3>Умови оренди</h3>
       <div class="terms-container">
         <ul class="terms-list">
           <li><span>📦</span> Доставка та монтаж по Львову та області</li>
-          <li><span>⏰</span> Доставка в день заходу або напередодні — за домовленістю</li>
+          <li><span>⏰</span> Доставка в день заходу або напередодні</li>
           <li><span>💳</span> Оренда обладнання здійснюється за авансом</li>
           <li><span>🔒</span> Аванс — гарантія бронювання дати та обладнання</li>
-          <li><span>🤝</span> Для постійних клієнтів та івент-агенцій — спеціальні умови</li>
+          <li><span>🤝</span> Спеціальні умови для постійних клієнтів</li>
         </ul>
       </div>
     </section>
 
-    <!-- ADVANTAGES -->
-    <section id="advantages" class="section">
-      <h3>Наші переваги</h3>
-      <div class="advantages">
-        <div class="adv">✔ Доставка по Львову</div>
-        <div class="adv">✔ Технічна підтримка</div>
-        <div class="adv">✔ Сучасне обладнання</div>
-        <div class="adv">✔ Широкий вибір</div>
-        <div class="adv">✔ Гнучкі ціни</div>
-      </div>
-    </section>
+    <section id="advantages" class="section">
+      <h3>Наші переваги</h3>
+      <div class="advantages">
+        <div class="adv">✔ Доставка по Львову</div>
+        <div class="adv">✔ Технічна підтримка</div>
+        <div class="adv">✔ Сучасне обладнання</div>
+        <div class="adv">✔ Гнучкі ціни</div>
+        <div class="adv">✔ Аванс — гарантія бронювання</div>
+      </div>
+    </section>
 
     <section id="order" class="section">
       <h3>Оформити замовлення</h3>
       <form id="orderForm">
-        <div class="form-group"><label>Ім’я:</label><input type="text" id="name" required></div>
-        <div class="form-group"><label>Телефон:</label><input type="tel" id="phone" value="+380" required></div>
-        <div class="form-group"><label>Дата заходу:</label><input type="date" id="order-date" required></div>
-        
+        <div style="margin-bottom:10px;"><label>Ім’я:</label><input type="text" id="name" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;"></div>
+        <div style="margin-bottom:10px;"><label>Телефон:</label><input type="tel" id="phone" value="+380" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;"></div>
+        <div style="margin-bottom:20px;"><label>Дата:</label><input type="date" id="order-date" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;"></div>
 
-        <div class="item-row"><label><input type="checkbox" class="item-chk" data-name="Проектор" data-price="400"> Проектор (400 грн)</label><input type="number" class="item-qty" min="1" value="1"></div>
-        <div class="item-row"><label><input type="checkbox" class="item-chk" data-name="Колонка" data-price="700"> Колонка (700 грн)</label><input type="number" class="item-qty" min="1" value="1"></div>
-        <div class="item-row"><label><input type="checkbox" class="item-chk" data-name="Фліпчарт" data-price="250"> Фліпчарт (250 грн)</label><input type="number" class="item-qty" min="1" value="1"></div>
-        <div class="item-row"><label><input type="checkbox" class="item-chk" data-name="Мікрофон" data-price="200"> Мікрофон (200 грн)</label><input type="number" class="item-qty" min="1" value="1"></div>
-        <div class="item-row"><label><input type="checkbox" class="item-chk" data-name="Ресівер" data-price="200"> Ресівер (200 грн)</label><input type="number" class="item-qty" min="1" value="1"></div>
-        <div class="item-row"><label><input type="checkbox" class="item-chk" data-name="Каркас" data-price="300"> Каркас (300 грн)</label><input type="number" class="item-qty" min="1" value="1"></div>
-        <div class="item-row"><label><input type="checkbox" class="item-chk" data-name="Екран" data-price="300"> Екран (300 грн)</label><input type="number" class="item-qty" min="1" value="1"></div>
-        <div class="item-row"><label><input type="checkbox" class="item-chk" data-name="Папір" data-price="120"> Папір (120 грн)</label><input type="number" class="item-qty" min="1" value="1"></div>
+        <div class="item-row">
+  <label><input type="checkbox" class="item-chk" data-price="400" data-name="Проектор"> Проектор</label>
+  <input type="number" class="item-qty" min="1" value="1">
+</div>
+<div class="item-row">
+  <label><input type="checkbox" class="item-chk" data-price="700" data-name="Акустична колонка"> Акустична колонка</label>
+  <input type="number" class="item-qty" min="1" value="1">
+</div>
+<div class="item-row">
+  <label><input type="checkbox" class="item-chk" data-price="250" data-name="Фліпчарт"> Фліпчарт</label>
+  <input type="number" class="item-qty" min="1" value="1">
+</div>
+<div class="item-row">
+  <label><input type="checkbox" class="item-chk" data-price="200" data-name="Мікрофон"> Мікрофон</label>
+  <input type="number" class="item-qty" min="1" value="1">
+</div>
+<div class="item-row">
+  <label><input type="checkbox" class="item-chk" data-price="200" data-name="Ресівер"> Ресівер</label>
+  <input type="number" class="item-qty" min="1" value="1">
+</div>
+<div class="item-row">
+  <label><input type="checkbox" class="item-chk" data-price="300" data-name="Каркас для банерів"> Каркас для банерів</label>
+  <input type="number" class="item-qty" min="1" value="1">
+</div>
+<div class="item-row">
+  <label><input type="checkbox" class="item-chk" data-price="300" data-name="Екран для проектора"> Екран для проектора</label>
+  <input type="number" class="item-qty" min="1" value="1">
+</div>
+<div class="item-row">
+  <label><input type="checkbox" class="item-chk" data-price="120" data-name="Папір для фліпчарту"> Папір для фліпчарту</label>
+  <input type="number" class="item-qty" min="1" value="1">
+</div>
+        <div style="margin:10px 0;"><label>Деталі:</label><textarea id="details" rows="3" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;"></textarea></div>
 
-        <div class="form-group" style="margin-top:20px;">
-          <label>Деталі (ваші побажання):</label>
-          <textarea id="details" placeholder="Напишіть адресу доставки, час або інші побажання..."></textarea>
-        </div>
-
-        <p style="font-weight:bold; font-size:1.5rem; margin-top:20px;">Разом: <span id="total">0</span> грн</p>
-        <button type="submit" style="width:100%; padding:15px; background:#333; color:#fff; border:none; border-radius:12px; font-weight:700; cursor:pointer;">Забронювати</button>
+        <p style="font-weight:bold; font-size:1.5rem;">Разом: <span id="total">0</span> грн</p>
+        <button type="submit" style="width:100%; padding:15px; background:#ff5a00; color:#fff; border:none; cursor:pointer; font-weight:700; border-radius:10px;">Забронювати</button>
       </form>
     </section>
-    <!-- SOCIALS -->
-    <section id="socials" class="section">
-      <h3>Ми у соцмережах</h3>
+
+    <section id="socials" class="section">
+      <h3>Ми у соцмережах</h3>
       <div class="socials">
         <a href="https://www.facebook.com/profile.php?id=61580244497506" class="fb" target="_blank"><svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24H12.82v-9.294H9.692V11.01h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.696h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/></svg></a>
         <a href="https://www.instagram.com/repre_zentbiz/" class="ig" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 3.608 1.325.975.975 1.262 2.242 1.324 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 2.633-1.324 3.608-.975.975-2.242 1.262-3.608 1.324-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.324-.975-.975-1.262-2.242-1.324-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.35-2.633 1.324-3.608C4.532 2.583 5.799 2.296 7.165 2.234 8.431 2.176 8.811 2.163 12 2.163z"/></svg></a>
         <a href="https://www.tiktok.com/@repre_zentbiz" class="tt" target="_blank"><svg viewBox="0 0 24 24"><path d="M19.589 6.686a4.94 4.94 0 0 1-3.778-3.633V2h-3.445v13.54a2.852 2.852 0 1 1-2.82-2.852c.068 0 .135.003.201.01V9.26a6.295 6.295 0 1 0 6.064 6.28V7.95a9.603 9.603 0 0 0 5.246 1.654V6.255a4.905 4.905 0 0 1-1.468-.43z"/></svg></a>
-        <a href="https://www.threads.net/@repre_zentbiz" class="th" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.478 2 12s4.477 10 10 10 10-4.478 10-10S17.523 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8zm.09-13c-2.28 0-4.14 1.86-4.14 4.14h1.88c0-1.26 1-2.26 2.26-2.26 1.19 0 2.19.93 2.25 2.1-.08 1.11-.82 1.72-2.11 1.72h-1.05v1.66h1.04c1.48 0 2.45.9 2.45 2.29 0 1.32-1.07 2.39-2.39 2.39-1.36 0-2.33-.92-2.41-2.21H9.03c.08 2.3 1.88 4.01 4.07 4.01 2.32 0 4.2-1.88 4.2-4.2 0-1.53-.85-2.86-2.14-3.58 1.01-.7 1.63-1.83 1.63-3.1 0-2.28-1.85-4.13-4.13-4.13z"/></svg></a>
+        <a href="https://www.threads.net/@repre_zentbiz" class="th" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-10C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></a>
         <a href="https://www.linkedin.com/in/reprezent-biz-822004384/" class="ln" target="_blank"><svg viewBox="0 0 24 24"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM7.12 20.45H3.56V9h3.56v11.45zM5.34 7.56c-1.14 0-2.06-.93-2.06-2.06s.92-2.06 2.06-2.06c1.14 0 2.06.93 2.06 2.06s-.92 2.06-2.06 2.06zM20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67h-3.56V9h3.42v1.56h.05c.48-.9 1.66-1.86 3.42-1.86 3.66 0 4.34 2.41 4.34 5.54v6.21z"/></svg></a>
       </div>
     </section>
 
-<section id="contacts" class="section" style="
-      text-align: center; 
-      max-width: 600px; 
-      margin: 40px auto; 
-      padding: 30px; 
-      background: linear-gradient(145deg, #ffffff, #fdf8e6); 
-      border-radius: 20px; 
-      box-shadow: 0 10px 30px rgba(255, 204, 0, 0.2); 
-      border: 1px solid #ffcc00;">
-      
+    <section id="contacts" class="section" style="text-align: center;">
       <h3 style="margin-bottom: 20px; color: #333;">Контакти</h3>
       
-      <div style="font-size: 1.15rem; line-height: 2;">
-        <p style="margin: 10px 0; transition: 0.3s;">
-          <span style="background: #fff; padding: 5px 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            📍 Львів, вул. Хоткевича 10
-          </span>
-        </p>
-        <p style="margin: 10px 0;">
-          <a href="tel:+380931307883" style="text-decoration: none; color: #333; background: #fff; padding: 5px 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            📞 +38 093 130 78 83
-          </a>
-        </p>
-        <p style="margin: 10px 0;">
-          <a href="mailto:reprezentbiz@gmail.com" style="text-decoration: none; color: #333; background: #fff; padding: 5px 15px; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">
-            ✉️ reprezentbiz@gmail.com
-          </a>
-        </p>
+      <div style="display: inline-block; background: rgba(255,255,255,0.5); padding: 30px; border-radius: 20px; border: 2px solid #ffcc00; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+        
+        <div style="font-size: 1.15rem; line-height: 2.5;">
+          <p style="margin: 15px 0;">
+            <span style="background: #fff; padding: 8px 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: inline-block;">
+              📍 Львів, вул. Хоткевича 10
+            </span>
+          </p>
+          
+          <p style="margin: 15px 0;">
+            <a href="tel:+380931307883" style="text-decoration: none; color: #333; background: #fff; padding: 8px 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: inline-block; transition: 0.3s;">
+              📞 +38 093 130 78 83
+            </a>
+          </p>
+          
+          <p style="margin: 15px 0;">
+            <a href="mailto:reprezentbiz@gmail.com" style="text-decoration: none; color: #333; background: #fff; padding: 8px 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: inline-block; transition: 0.3s;">
+              ✉️ reprezentbiz@gmail.com
+            </a>
+          </p>
+        </div>
+        
       </div>
     </section>
   </main>
-</html>
-  <div class="tg-float">
-  <a href="https://t.me/RepreZentbiz_bot" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" width="55" height="55" alt="Telegram">
-  </a>
-</div>
 
-<footer style="text-align: center; padding: 30px; background: #333; color: #fff; margin-top: 50px;">
-  &copy; 2026 <strong>RepreZentbiz</strong>.
-</footer>
+  <div class="tg-float"><a href="https://t.me/RepreZentbiz_bot" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" width="55" alt="TG"></a></div>
 
-</main>
+  <footer style="text-align: center; padding: 30px; background: #333; color: #fff;">&copy; 2026 RepreZentbiz.</footer>
 
-<!-- JS -->
-<script src="script.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-  // Авто-дата
-  const d = document.getElementById('order-date');
-  const today = new Date().toISOString().split('T')[0];
-  if (d) {
-    d.value = today;
-    d.min = today;
-  }
-
-  // Маска телефону
-  const p = document.getElementById('phone');
-  if (p) {
-    p.addEventListener('input', function () {
-      if (!this.value.startsWith('+380')) this.value = '+380';
-      this.value = '+380' + this.value.substring(4).replace(/\D/g, '').substring(0, 9);
-    });
-  }
-
-  // Калькулятор
-  const chks = document.querySelectorAll('.item-chk');
-  const qtys = document.querySelectorAll('.item-qty');
-  const totalSpan = document.getElementById('total');
-
-  function calc() {
-    let sum = 0;
-    chks.forEach((chk, i) => {
-      if (chk.checked) {
-        sum += parseInt(chk.dataset.price) * parseInt(qtys[i].value);
-      }
-    });
-    totalSpan.innerText = sum;
-  }
-
-  chks.forEach(c => c.addEventListener('change', calc));
-  qtys.forEach(q => q.addEventListener('input', calc));
-
-});
-</script>
-
+ <script src="script.js"></script>
 </body>
 </html>
-
