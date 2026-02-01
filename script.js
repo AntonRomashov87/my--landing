@@ -1,166 +1,127 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // === 1. АВТОМАТИЧНА ДАТА (Сьогодні) ===
-  const dateInput = document.getElementById('order-date');
-  if (dateInput) {
-    const today = new Date();
-    const formattedDate = today.toISOString().split('T')[0];
-    dateInput.value = formattedDate;
-    dateInput.min = formattedDate; 
-  }
+    const orderForm = document.getElementById('orderForm');
+    const totalEl = document.getElementById('total');
+    const dateInput = document.getElementById('order-date');
+    const phoneInput = document.getElementById('phone');
 
-  // === 2. BURGER MENU ===
-  const burger = document.getElementById('burger');
-  const nav = document.getElementById('nav');
-  if (burger) {
-    burger.addEventListener('click', () => nav.classList.toggle('show'));
-  }
+    // 1. АВТОМАТИЧНА ДАТА
+    if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.value = today;
+        dateInput.min = today;
+    }
 
-  // === 3. SCROLL UP BUTTON ===
-  const upBtn = document.getElementById('upBtn');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) upBtn?.classList.add('show');
-    else upBtn?.classList.remove('show');
-  });
-  upBtn?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  // === 4. РОЗРАХУНОК ВАРТОСТІ (TOTAL) ===
-  const orderForm = document.getElementById('orderForm');
-  const totalEl = document.getElementById('total');
-
-  function calculateTotal() {
-    if (!orderForm || !totalEl) return;
-    let total = 0;
-    const checkboxes = orderForm.querySelectorAll('.item-chk');
-    checkboxes.forEach(cb => {
-      const price = parseInt(cb.dataset.price) || 0;
-      const qtyInput = cb.closest('.item-row')?.querySelector('.item-qty');
-      const qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
-      if (cb.checked) total += price * qty;
-    });
-    totalEl.textContent = total;
-  }
-
-  if (orderForm) {
-    orderForm.addEventListener('input', calculateTotal);
-    orderForm.addEventListener('change', calculateTotal);
-    calculateTotal(); // Початковий розрахунок
-  }
-
-  // === 5. ВІДПРАВКА В ТЕЛЕГРАМ ===
-  const BOT_TOKEN = "8488773081:AAGZOt8IBYEzO4Q5iL63agF5PvuJVxVSwvY";
-  const CHAT_ID = "598331739";
-
-  if (orderForm) {
-    orderForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      // Отримуємо значення (використовуємо правильні ID з HTML)
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const date = document.getElementById('order-date').value; 
-      const details = document.getElementById('details').value.trim();
-
-      if (!name || !phone || !date) {
-        alert('Будь ласка, заповніть ім’я, телефон та дату.');
-        return;
-      }
-
-      // Збираємо список обраного
-      const chosen = Array.from(orderForm.querySelectorAll('.item-chk'))
-        .filter(cb => cb.checked)
-        .map(cb => {
-          const qtyInput = cb.closest('.item-row')?.querySelector('.item-qty');
-          const qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
-          return `🔹 ${cb.dataset.name} (${qty} шт. × ${cb.dataset.price} грн)`;
+    // 2. МАСКА ТЕЛЕФОНУ (+380)
+    if (phoneInput) {
+        phoneInput.addEventListener('input', () => {
+            if (!phoneInput.value.startsWith('+380')) phoneInput.value = '+380';
+            let numbers = phoneInput.value.substring(4).replace(/\D/g, '');
+            phoneInput.value = '+380' + numbers.substring(0, 9);
         });
-
-      if (chosen.length === 0) {
-        alert('Виберіть хоча б одну позицію з каталогу.');
-        return;
-      }
-
-      const total = totalEl.textContent || '0';
-
-      const text = `
-🆕 Нове замовлення!
-👤 Ім’я: ${name}
-📞 Телефон: ${phone}
-📅 Дата: ${date}
------------------------
-${chosen.join('\n')}
------------------------
-💰 Сума: ${total} грн
-✍ Деталі: ${details || '—'}
-      `;
-
-      // Блокуємо кнопку, щоб не тиснули двічі
-      const btn = orderForm.querySelector('button[type="submit"]');
-      btn.disabled = true;
-      btn.textContent = "Надсилаємо...";
-
-      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          chat_id: CHAT_ID, 
-          text: text,
-          parse_mode: "HTML" // Додав для кращого вигляду (жирний текст тощо)
-        })
-      })
-      .then(r => r.json())
-      .then(res => {
-        if (res.ok) {
-          alert("✅ Замовлення надіслано! Ми зателефонуємо вам.");
-          orderForm.reset();
-          calculateTotal();
-          // Повертаємо сьогоднішню дату після очищення
-          if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
-        } else {
-          alert("❌ Помилка бота: " + (res.description || "невідома"));
-        }
-      })
-      .catch(err => {
-        console.error(err);
-        alert("❌ Помилка мережі. Перевірте інтернет.");
-      })
-      .finally(() => {
-        btn.disabled = false;
-        btn.textContent = "Замовити";
-      });
-    });
-  }
-});
-const phoneInput = document.getElementById('phone');
-
-phoneInput.addEventListener('input', function (e) {
-    // Якщо користувач намагається видалити префікс, повертаємо його
-    if (!phoneInput.value.startsWith('+380')) {
-        phoneInput.value = '+380';
     }
-    
-    // Дозволяємо лише цифри після префікса (видаляємо все, що не є цифрами)
-    let prefix = '+380';
-    let currentVal = phoneInput.value;
-    let numbersOnly = currentVal.substring(prefix.length).replace(/\D/g, '');
-    
-    // Обмежуємо довжину (9 цифр після +380)
-    phoneInput.value = prefix + numbersOnly.substring(0, 9);
-});
 
-// Запобігаємо встановленню курсору перед +380 для зручності
-phoneInput.addEventListener('click', function() {
-    if (phoneInput.selectionStart < 4) {
-        phoneInput.setSelectionRange(4, 4);
+    // 3. РОЗРАХУНОК СУМИ
+    function calculateTotal() {
+        if (!orderForm || !totalEl) return;
+        let total = 0;
+        const checkboxes = orderForm.querySelectorAll('.item-chk');
+        checkboxes.forEach(cb => {
+            if (cb.checked) {
+                const qtyInput = cb.closest('.item-row')?.querySelector('.item-qty');
+                const qty = parseInt(qtyInput?.value) || 1;
+                total += (parseInt(cb.dataset.price) || 0) * qty;
+            }
+        });
+        totalEl.textContent = total;
+    }
+
+    if (orderForm) {
+        orderForm.addEventListener('input', calculateTotal);
+
+        // 4. ВІДПРАВКА ЗАМОВЛЕННЯ
+        orderForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const BOT_TOKEN = "8488773081:AAGZOt8IBYEzO4Q5iL63agF5PvuJVxVSwvY";
+            const CHAT_ID = "598331739";
+
+            const name = document.getElementById('name').value.trim();
+            const phone = phoneInput.value;
+            const date = dateInput.value;
+            const details = document.getElementById('details')?.value.trim() || "—";
+            const total = totalEl.textContent;
+
+            // Збираємо товари для менеджера (з цінами)
+            const chosenForManager = [];
+            // Збираємо товари для клієнта (простий список)
+            const chosenForClient = [];
+
+            orderForm.querySelectorAll('.item-chk:checked').forEach(cb => {
+                const qty = cb.closest('.item-row')?.querySelector('.item-qty')?.value || 1;
+                const itemName = cb.dataset.name || "Товар";
+                const price = cb.dataset.price;
+                
+                chosenForManager.push(`🔹 ${itemName} (${qty} шт. × ${price} грн)`);
+                chosenForClient.push(`• ${itemName} — ${qty} шт.`);
+            });
+
+            if (chosenForManager.length === 0) {
+                alert('Виберіть хоча б один товар!');
+                return;
+            }
+
+            // Текст для ТЕБЕ (менеджера)
+            const textManager = `🆕 <b>Нове замовлення!</b>\n\n` +
+                                `👤 <b>Ім’я:</b> ${name}\n` +
+                                `📞 <b>Телефон:</b> ${phone}\n` +
+                                `📅 <b>Дата:</b> ${date}\n` +
+                                `-----------------------\n` +
+                                `${chosenForManager.join('\n')}\n` +
+                                `-----------------------\n` +
+                                `💰 <b>Сума: ${total} грн</b>\n` +
+                                `✍ <b>Деталі:</b> ${details}`;
+
+            const btn = orderForm.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.textContent = "Надсилаємо...";
+
+            // Відправка менеджеру
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ 
+                    chat_id: CHAT_ID, 
+                    text: textManager, 
+                    parse_mode: "HTML" 
+                })
+            })
+            .then(r => r.json())
+            .then(res => {
+                if (res.ok) {
+                    alert("✅ Замовлення прийнято! Менеджер скоро зателефонує.");
+
+                    // ПРОПОЗИЦІЯ КОПІЇ ДЛЯ КЛІЄНТА
+                    if (confirm("Бажаєте зберегти копію замовлення у свій Telegram?")) {
+                        const textClient = `Мій список оренди в RepreZentbiz:\n${chosenForClient.join('\n')}\n\nЗагальна сума: ${total} грн\nДата: ${date}`;
+                        const tgUrl = `https://t.me/share/url?url=${encodeURIComponent('https://reprezent.biz')} &text=${encodeURIComponent(textClient)}`;
+                        window.open(tgUrl, '_blank');
+                    }
+
+                    orderForm.reset();
+                    calculateTotal();
+                    if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
+                    if (phoneInput) phoneInput.value = "+380";
+                } else {
+                    alert("❌ Помилка відправки: " + res.description);
+                }
+            })
+            .catch(err => {
+                alert("❌ Помилка мережі. Спробуйте ще раз.");
+            })
+            .finally(() => {
+                btn.disabled = false;
+                btn.textContent = "Забронювати";
+            });
+        });
     }
 });
-<script>
-window.addEventListener("scroll", function() {
-  const btn = document.querySelector(".order-top");
-  if (window.scrollY > 150) {
-    btn.style.display = "block";
-  } else {
-    btn.style.display = "none";
-  }
-});
-</script>
-
