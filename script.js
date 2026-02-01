@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const BOT_TOKEN = "8488773081:AAGZOt8IBYEzO4Q5iL63agF5PvuJVxVSwvY";
             const CHAT_ID = "598331739";
+            const MAKE_WEBHOOK_URL = "https://hook.eu2.make.com/m293d891ub2qrulb5fdt7qp5b1h7flib";
 
             const name = document.getElementById('name').value.trim();
             const phone = phoneInput.value;
@@ -51,10 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const details = document.getElementById('details')?.value.trim() || "—";
             const total = totalEl.textContent;
 
-            // Збираємо товари для менеджера (з цінами)
+            // Збираємо товари
             const chosenForManager = [];
-            // Збираємо товари для клієнта (простий список)
             const chosenForClient = [];
+            const itemsForMake = [];
 
             orderForm.querySelectorAll('.item-chk:checked').forEach(cb => {
                 const qty = cb.closest('.item-row')?.querySelector('.item-qty')?.value || 1;
@@ -63,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 chosenForManager.push(`🔹 ${itemName} (${qty} шт. × ${price} грн)`);
                 chosenForClient.push(`• ${itemName} — ${qty} шт.`);
+                itemsForMake.push(`${itemName} (${qty} шт.)`);
             });
 
             if (chosenForManager.length === 0) {
@@ -70,40 +72,44 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Текст для ТЕБЕ (менеджера)
-            const textManager = `🆕 <b>Нове замовлення!</b>\n\n` +
-                                `👤 <b>Ім’я:</b> ${name}\n` +
-                                `📞 <b>Телефон:</b> ${phone}\n` +
-                                `📅 <b>Дата:</b> ${date}\n` +
-                                `-----------------------\n` +
-                                `${chosenForManager.join('\n')}\n` +
-                                `-----------------------\n` +
-                                `💰 <b>Сума: ${total} грн</b>\n` +
-                                `✍ <b>Деталі:</b> ${details}`;
-
             const btn = orderForm.querySelector('button[type="submit"]');
             btn.disabled = true;
             btn.textContent = "Надсилаємо...";
 
-            // Відправка менеджеру
-            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    chat_id: CHAT_ID, 
-                    text: textManager, 
-                    parse_mode: "HTML" 
-                })
-            })
-            .then(r => r.json())
-            .then(res => {
-                if (res.ok) {
-                    alert("✅ Замовлення прийнято! Менеджер скоро зателефонує.");
+            // Готуємо дані для Make
+            const dataToMake = {
+                name: name,
+                phone: phone,
+                date: date,
+                items: itemsForMake.join(', '),
+                total: total,
+                details: details
+            };
 
-                    // ПРОПОЗИЦІЯ КОПІЇ ДЛЯ КЛІЄНТА
+            // ВІДПРАВКА
+            const textManager = `🆕 <b>Нове замовлення!</b>\n\n👤 <b>Ім’я:</b> ${name}\n📞 <b>Телефон:</b> ${phone}\n📅 <b>Дата:</b> ${date}\n-----------------------\n${chosenForManager.join('\n')}\n-----------------------\n💰 <b>Сума: ${total} грн</b>\n✍ <b>Деталі:</b> ${details}`;
+
+            Promise.all([
+                // 1. У Телеграм
+                fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ chat_id: CHAT_ID, text: textManager, parse_mode: "HTML" })
+                }),
+                // 2. У Make (Google Таблиці)
+                fetch(MAKE_WEBHOOK_URL, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(dataToMake)
+                })
+            ])
+            .then(async ([resTg, resMake]) => {
+                if (resTg.ok) {
+                    alert("✅ Замовлення прийнято! Дані збережено в таблицю.");
+                    
                     if (confirm("Бажаєте зберегти копію замовлення у свій Telegram?")) {
                         const textClient = `Мій список оренди в RepreZentbiz:\n${chosenForClient.join('\n')}\n\nЗагальна сума: ${total} грн\nДата: ${date}`;
-                        const tgUrl = `https://t.me/share/url?url=${encodeURIComponent('https://reprezent.biz')} &text=${encodeURIComponent(textClient)}`;
+                        const tgUrl = `https://t.me/share/url?url=${encodeURIComponent('https://reprezentbiz.onrender.com/')} &text=${encodeURIComponent(textClient)}`;
                         window.open(tgUrl, '_blank');
                     }
 
@@ -111,8 +117,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     calculateTotal();
                     if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
                     if (phoneInput) phoneInput.value = "+380";
-                } else {
-                    alert("❌ Помилка відправки: " + res.description);
                 }
             })
             .catch(err => {
