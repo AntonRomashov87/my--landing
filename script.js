@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const BOT_TOKEN = "8488773081:AAGZOt8IBYEzO4Q5iL63agF5PvuJVxVSwvY";
             const CHAT_ID = "598331739";
-            const MAKE_WEBHOOK_URL = "https://hook.eu2.make.com/m293d891ub2qrulb5fdt7qp5b1h7flib";
+            const MAKE_WEBHOOK_URL = "https://hook.eu1.make.com/sce7duz8lqxv4yink90d5am4d4ntaj3k";
 
             const name = document.getElementById('name').value.trim();
             const phone = phoneInput.value;
