@@ -179,6 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const q = qtyOf(c);
       return q > 1 ? `${c.dataset.name} ×${q}` : c.dataset.name;
     });
+    // Той самий перелік, але структуровано — для Firebase
+    const itemList = chosen.map(c => ({ name: c.dataset.name, qty: qtyOf(c) }));
 
     const payload = {
       name:    document.getElementById('name').value.trim(),
@@ -197,11 +199,18 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.textContent = 'Надсилаємо…';
 
     try {
-      const res = await fetch(MAKE_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
+      // Заявка йде двома шляхами одразу: у Make (таблиця + Telegram)
+      // і у Firebase (пульт із календарем зайнятості).
+      // Firebase — найкраще зусилля: якщо він мовчить, замовлення
+      // все одно прийняте, бо Make спрацював.
+      const [res] = await Promise.all([
+        fetch(MAKE_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }),
+        (window.saveBooking ? window.saveBooking({ ...payload, itemList }) : Promise.resolve(false))
+      ]);
       if (!res.ok) throw new Error('bad response');
 
       // Екран підтвердження
