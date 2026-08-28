@@ -1,283 +1,260 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Оренда обладнання — RepreZentbiz</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
- <style>
-  /* 1. ШРИФТИ ТА ОСНОВА */
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07070F">
 
-  html { scroll-behavior: smooth; }
-  body { 
-    font-family: 'Poppins', sans-serif; margin: 0; background: #fdfdfd; color: #333; 
-    line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased;
-  }
+<title>Оренда проектора, колонки, фліпчарта у Львові — RepreZentbiz</title>
+<meta name="description" content="Оренда презентаційного обладнання у Львові: проектор 400 грн/день, акустична колонка, фліпчарт, мікрофон, екран. Доставка та монтаж по місту й області.">
+<link rel="canonical" href="https://reprezent.biz/">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RepreZentbiz">
+<meta property="og:title" content="Оренда обладнання для заходів у Львові">
+<meta property="og:description" content="Проектор, колонка, фліпчарт, мікрофон, екран. Доставка по Львову та області. Аванс — гарантія броні.">
+<meta property="og:url" content="https://reprezent.biz/">
+<meta property="og:locale" content="uk_UA">
+<meta property="og:image" content="https://www.dropbox.com/scl/fi/bil5nopj9j70ulpa4u1o8/photo_2023-08-20_21-18-33.jpg?rlkey=wwa67jsk4lu0idb1sn5alh3mk&raw=1">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"RepreZentbiz","description":"Оренда презентаційного обладнання у Львові та області","url":"https://reprezent.biz/","telephone":"+380931307883","email":"reprezentbiz@gmail.com","priceRange":"120-2000 UAH","address":{"@type":"PostalAddress","addressLocality":"Львів","addressCountry":"UA"},"areaServed":"Львів та Львівська область","sameAs":["https://www.facebook.com/profile.php?id=61580244497506","https://www.instagram.com/repre_zentbiz/","https://www.tiktok.com/@repre_zentbiz","https://www.linkedin.com/in/reprezent-biz-822004384/"]}
+</script>
 
-  /* 2. ХЕДЕР ТА КОМПАКТНИЙ ЛОГО */
-  header { 
-    background: #fff; padding: 10px 5%; display: flex; justify-content: space-between; 
-    align-items: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
-  }
-  .brand { display: flex; align-items: center; gap: 10px; }
-  .brand img { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; border: 1.5px solid #ff5a00; }
-  .brand .title { 
-    font-weight: 800; font-size: 1.2rem; background: linear-gradient(90deg, #ff5a00, #ffcc00, #ff5a00);
-    background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    animation: shine 3s linear infinite; text-transform: uppercase;
-  }
-  nav a { margin-left: 15px; text-decoration: none; color: #444; font-weight: 600; font-size: 0.85rem; transition: 0.3s; }
-  nav a:hover { color: #ff5a00; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Усі три шрифти мають кирилицю -->
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
-  /* 3. ПЛАВАЮЧА КНОПКА */
-  .order-top {
-    position: fixed; top: 80px; left: 20px; background: #ff5a00; color: white;
-    padding: 10px 18px; border-radius: 50px; font-size: 13px; font-weight: 700;
-    text-decoration: none; z-index: 999; box-shadow: 0 8px 20px rgba(255, 90, 0, 0.3);
-    animation: pulse-orange 2s infinite;
-  }
-
-  /* 4. КАТАЛОГ */
-  .section { padding: 50px 5%; max-width: 1100px; margin: 0 auto; }
-  h1 { font-size: 2.4rem; font-weight: 800; text-align: center; margin-bottom: 5px; }
-  h3 { text-align: center; margin-bottom: 35px; font-size: 1.8rem; font-weight: 700; }
-  
-  .catalog { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; }
-  .card { 
-    background: #fff; border-radius: 18px; padding: 18px; text-align: center; 
-    box-shadow: 0 8px 25px rgba(0,0,0,0.04); transition: 0.3s; border: 1px solid #f2f2f2;
-    display: flex; flex-direction: column; height: 100%; box-sizing: border-box;
-  }
-  .card:hover { transform: translateY(-7px); border-color: #ffcc00; }
-  .card img { width: 100%; height: 170px; object-fit: cover; border-radius: 12px; margin-bottom: 12px; }
-  .card p { font-weight: 700; color: #ff5a00; margin-top: auto; }
-
-  /* 5. ВІДГУКИ (ЗОЛОТІ ЗІРКИ ТА РАМКИ) */
-  .reviews { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  .review-card { 
-    background: #fff; padding: 25px; border-radius: 18px; 
-    box-shadow: 0 8px 20px rgba(0,0,0,0.03); border: 1px solid #eee; border-left: 6px solid #ffcc00; 
-  }
-  .stars { color: #ffcc00; margin-bottom: 10px; font-size: 1.2rem; letter-spacing: 2px; }
-
-  /* 6. УМОВИ ОРЕНДИ (У РАМЦІ) */
-  .terms-container { 
-    background: #fff; border: 2px solid #ffcc00; border-radius: 20px; 
-    padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.02); 
-  }
-  .terms-list { list-style: none; padding: 0; }
-  .terms-list li { margin-bottom: 15px; display: flex; align-items: center; font-weight: 500; }
-  .terms-list li span { margin-right: 15px; font-size: 1.5rem; }
-
-  /* 7. ПЕРЕВАГИ (ПОСОРТОВАНІ БАБЛИ) */
-  .advantages { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-  .adv { 
-    background: #333; color: #fff; padding: 10px 22px; border-radius: 50px; 
-    font-size: 0.9rem; font-weight: 600; box-shadow: 0 4px 10px rgba(0,0,0,0.15); 
-  }
-
-  /* 8. ФОРМА */
-  #orderForm { 
-    background: #fff; padding: 30px; border-radius: 24px; box-shadow: 0 20px 50px rgba(0,0,0,0.07); 
-    max-width: 600px; margin: 0 auto; border: 1px solid #eee; box-sizing: border-box;
-  }
-  .item-row { 
-    display: flex; justify-content: space-between; align-items: center; 
-    padding: 10px 14px; margin-bottom: 8px; border-radius: 10px; background: #fcfcfc; border: 1px solid #f0f0f0;
-  }
-  button[type="submit"] {
-    width: 100%; padding: 18px; background: linear-gradient(45deg, #ff5a00, #ff8c00); 
-    color: #fff; border: none; cursor: pointer; font-weight: 700; border-radius: 14px; font-size: 1.1rem;
-  }
-
-  /* 9. СОЦМЕРЕЖІ */
-  .socials { display: flex; justify-content: center; gap: 20px; }
-  .socials a svg { width: 35px; height: 35px; }
-  .fb svg { fill: #1877F2; } .ig svg { fill: #E4405F; } .tt svg { fill: #000; } .th svg { fill: #000; } .ln svg { fill: #0077B5; }
-
-  /* АНІМАЦІЇ */
-  @keyframes shine { to { background-position: 200% center; } }
-  @keyframes pulse-orange {
-    0% { transform: scale(0.96); box-shadow: 0 0 0 0 rgba(255, 90, 0, 0.5); }
-    70% { transform: scale(1); box-shadow: 0 0 0 12px rgba(255, 90, 0, 0); }
-    100% { transform: scale(0.96); box-shadow: 0 0 0 0 rgba(255, 90, 0, 0); }
-  }
-
-  @media (max-width: 768px) {
-    nav { display: none; }
-    .order-top { top: auto; bottom: 20px; left: 50%; transform: translateX(-50%); width: 85%; text-align: center; }
-    .catalog { grid-template-columns: 1fr; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <a href="#order" class="order-top">Швидке замовлення ⚡</a>
+<div class="lights"><i class="l-r"></i><i class="l-g"></i><i class="l-b"></i></div>
+<div class="grain"></div>
 
-  <header>
-    <div class="brand">
-      <img src="https://www.dropbox.com/scl/fi/bil5nopj9j70ulpa4u1o8/photo_2023-08-20_21-18-33.jpg?rlkey=wwa67jsk4lu0idb1sn5alh3mk&st=hutysxgj&raw=1" alt="RepreZent logo">
-      <div class="title">RepreZentbiz</div>
+<header class="hd">
+  <div class="lg">
+    <img src="https://www.dropbox.com/scl/fi/bil5nopj9j70ulpa4u1o8/photo_2023-08-20_21-18-33.jpg?rlkey=wwa67jsk4lu0idb1sn5alh3mk&st=hutysxgj&raw=1" alt="RepreZentbiz">
+    <span class="nm">Repre<b>Zent</b></span>
+  </div>
+  <nav>
+    <a href="#catalog">Обладнання</a>
+    <a href="#packs">Комплекти</a>
+    <a href="#terms">Умови</a>
+    <a href="#order">Замовити</a>
+  </nav>
+  <a class="call" href="tel:+380931307883">093 130 78 83</a>
+</header>
+
+<section class="hero">
+  <div class="hero-in">
+    <div class="kicker"><s></s> Львів · оренда на день</div>
+    <h1>Обладнання, що <u>створює враження</u></h1>
+    <p class="sub">Проектори, акустика, екрани та фліпчарти для тренінгів, конференцій і корпоративів. Привозимо, підключаємо, забираємо.</p>
+    <div class="cta">
+      <a class="btn btn-w" href="#packs">Готові комплекти</a>
+      <a class="btn btn-g" href="#order">Порахувати оренду</a>
     </div>
-    <nav>
-      <a href="#catalog">Каталог</a>
-      <a href="#terms">Умови</a>
-      <a href="#advantages">Переваги</a>
-      <a href="#order">Замовити</a>
-      <a href="#socials">Соцмережі</a>
-      <a href="#contacts">Контакти</a>
-    </nav>
-  </header>
+    <div class="rider">
+      <b>Проектор <i>×2</i></b><b>Екран <i>×1</i></b><b>Колонка <i>×1</i></b><b>Мікрофон <i>×1</i></b><b>Ресівер <i>×3</i></b><b>Фліпчарт <i>×5</i></b><b>Каркас <i>×1</i></b>
+    </div>
+  </div>
+</section>
 
-  <main>
-    <section class="section" style="text-align:center;">
-      <h1>Обладнання, що створює враження</h1>
-      <p>Оренда у Львові та області</p>
-    </section>
+<main>
 
-    <section id="catalog" class="section">
-      <h3>Каталог обладнання</h3>
-      <div class="catalog">
-        <div class="card"><img src="https://www.dropbox.com/scl/fi/hje3tjrmagm2y3bjjf0nw/proektor-magcubic-hy320.jpg?rlkey=cmuwd4u0vfj1xbkbfkkoc3giw&st=yo8j5jxu&raw=1" alt="Проектор"><h4>Проектор</h4><p>Від 400 грн/день</p><p>Високоякісні проектори для презентацій.</p></div>
-        <div class="card"><img src="https://www.dropbox.com/scl/fi/pywinvrj69ypjsejyti0g/33575291588853.webp?rlkey=c9lv0d2v6p1zdkognquxcmlh2&st=p4va8lpz&raw=1" alt="Колонка"><h4>Акустична колонка</h4><p>Від 700 грн/день</p><p>Потужний звук для заходу.</p></div>
-        <div class="card"><img src="https://www.dropbox.com/scl/fi/88yars39xb4ot3x1vnmt5/flipchart-na-trinozi.jpg?rlkey=hk0vck753ap5i4ucpxuvaftz3&st=njq8deja&raw=1" alt="Фліпчарт"><h4>Фліпчарт</h4><p>Від 250 грн/день</p><p>Для конференцій та тренінгів.</p></div>
-        <div class="card"><img src="https://www.dropbox.com/scl/fi/353koacp3lv7elz56po5e/2e6fb8fd-f5a6-4395-8a90-5a8bb48b0b97.webp?rlkey=9vnyc29knhzaxju97vhd7yc65&st=mo6z2ad3&raw=1" alt="Мікрофон"><h4>Мікрофон</h4><p>Від 200 грн/день</p><p>Для будь-яких виступів.</p></div>
-        <div class="card"><img src="https://www.dropbox.com/scl/fi/1ef6basqzs12dj8f6pg6s/.png?rlkey=gzbgj25fivhb7utcgzhmwv66q&st=0ac0wezl&raw=1" alt="Ресівер"><h4>Ресівер</h4><p>Від 200 грн/день</p><p>Компактний приймач.</p></div>
-        <div class="card"><img src="https://www.dropbox.com/scl/fi/4x709t46rc2dpnojvrh2r/photo_2026-01-25_20-41-39.jpg?rlkey=91gdcwlt999d3lgohl1q1f3ns&st=fdl9m7qf&raw=1" alt="Каркас"><h4>Каркас для банерів</h4><p>300 грн/день</p><p>Банери, фотозона, екран.</p></div>
-        <div class="card"><img src="https://www.dropbox.com/scl/fi/kfign44q0tbsvqnawx6ae/.png?rlkey=6x3akg6e6eco291u7ziqqme0a&st=mvgt1jqi&raw=1" alt="Екран"><h4>Екран для проектора</h4><p>Від 300 грн/день</p><p>Якісна демонстрація зображення.</p></div>
-        <div class="card"><img src="https://www.dropbox.com/scl/fi/sihgy1dsruvrnwqjbqs0f/product_image_72228_303063-400x400.jpg?rlkey=4dx3qetm831wbhoass33zwhjk&st=cwxq2d8g&raw=1" alt="Папір"><h4>Папір для фліпчарту</h4><p>120 грн/пачка</p><p>Стандартний білий, 10 арк.</p></div>
-      </div>
-    </section>
+<section id="catalog" class="sec">
+  <div class="sec-h rise">
+    <h3>Обладнання</h3>
+    <p>Ціна за добу. Цифра в кутку — скільки одиниць є фізично.</p>
+  </div>
+  <div class="units">
+    <div class="unit glass rise"><div class="ph"><img src="https://www.dropbox.com/scl/fi/hje3tjrmagm2y3bjjf0nw/proektor-magcubic-hy320.jpg?rlkey=cmuwd4u0vfj1xbkbfkkoc3giw&st=yo8j5jxu&raw=1" alt="Проектор в оренду Львів"><span class="stock">2 шт.</span></div><div class="bd"><h4>Проектор</h4><p class="note">Презентації, кіно, показ слайдів</p><div class="pr">400 <small>грн/день</small></div></div></div>
+    <div class="unit glass rise"><div class="ph"><img src="https://www.dropbox.com/scl/fi/pywinvrj69ypjsejyti0g/33575291588853.webp?rlkey=c9lv0d2v6p1zdkognquxcmlh2&st=p4va8lpz&raw=1" alt="Акустична колонка в оренду"><span class="stock">1 шт.</span></div><div class="bd"><h4>Акустична колонка</h4><p class="note">Звук на зал або відкритий простір</p><div class="pr">700 <small>грн/день</small></div></div></div>
+    <div class="unit glass rise"><div class="ph"><img src="https://www.dropbox.com/scl/fi/88yars39xb4ot3x1vnmt5/flipchart-na-trinozi.jpg?rlkey=hk0vck753ap5i4ucpxuvaftz3&st=njq8deja&raw=1" alt="Фліпчарт в оренду"><span class="stock">5 шт.</span></div><div class="bd"><h4>Фліпчарт</h4><p class="note">Тренінги, воркшопи, мозкові штурми</p><div class="pr">250 <small>грн/день</small></div></div></div>
+    <div class="unit glass rise"><div class="ph"><img src="https://www.dropbox.com/scl/fi/353koacp3lv7elz56po5e/2e6fb8fd-f5a6-4395-8a90-5a8bb48b0b97.webp?rlkey=9vnyc29knhzaxju97vhd7yc65&st=mo6z2ad3&raw=1" alt="Мікрофон в оренду"><span class="stock">1 шт.</span></div><div class="bd"><h4>Мікрофон</h4><p class="note">Виступи, ведення, привітання</p><div class="pr">200 <small>грн/день</small></div></div></div>
+    <div class="unit glass rise"><div class="ph"><img src="https://www.dropbox.com/scl/fi/1ef6basqzs12dj8f6pg6s/.png?rlkey=gzbgj25fivhb7utcgzhmwv66q&st=0ac0wezl&raw=1" alt="Ресівер"><span class="stock">3 шт.</span></div><div class="bd"><h4>Ресівер</h4><p class="note">Приймач для радіомікрофона</p><div class="pr">200 <small>грн/день</small></div></div></div>
+    <div class="unit glass rise"><div class="ph"><img src="https://www.dropbox.com/scl/fi/4x709t46rc2dpnojvrh2r/photo_2026-01-25_20-41-39.jpg?rlkey=91gdcwlt999d3lgohl1q1f3ns&st=fdl9m7qf&raw=1" alt="Каркас для банерів"><span class="stock">1 шт.</span></div><div class="bd"><h4>Каркас для банерів</h4><p class="note">Банер, фотозона, задник сцени</p><div class="pr">300 <small>грн/день</small></div></div></div>
+    <div class="unit glass rise"><div class="ph"><img src="https://www.dropbox.com/scl/fi/kfign44q0tbsvqnawx6ae/.png?rlkey=6x3akg6e6eco291u7ziqqme0a&st=mvgt1jqi&raw=1" alt="Екран для проектора"><span class="stock">1 шт.</span></div><div class="bd"><h4>Екран для проектора</h4><p class="note">Рівна картинка замість стіни</p><div class="pr">300 <small>грн/день</small></div></div></div>
+    <div class="unit glass rise"><div class="ph"><img src="https://www.dropbox.com/scl/fi/sihgy1dsruvrnwqjbqs0f/product_image_72228_303063-400x400.jpg?rlkey=4dx3qetm831wbhoass33zwhjk&st=cwxq2d8g&raw=1" alt="Папір для фліпчарту"><span class="stock">витратник</span></div><div class="bd"><h4>Папір для фліпчарту</h4><p class="note">Білий, 10 аркушів у пачці</p><div class="pr">120 <small>грн/пачка</small></div></div></div>
+  </div>
+</section>
 
-    <section id="reviews" class="section">
-      <h3>Відгуки наших клієнтів</h3>
-      <div class="reviews">
-        <div class="review-card"><div class="stars">★★★★★</div><p>Все привезли вчасно, швидко підключили. Проектор і звук — супер. Рекомендуємо!</p><span>Олена, корпоративний захід</span></div>
-        <div class="review-card"><div class="stars">★★★★★</div><p>Брали фліпчарти та мікрофони для тренінгу. Дуже зручно, сервіс на рівні.</p><span>Андрій, бізнес-тренінг</span></div>
-        <div class="review-card"><div class="stars">★★★★★</div><p>Професійний підхід і нормальні ціни. Обладнання чисте й справне.</p><span>Ірина, івент-менеджер</span></div>
-      </div>
-    </section>
+<section id="packs" class="sec">
+  <div class="sec-h rise">
+    <h3>Готові комплекти</h3>
+    <p>Все для заходу однією позицією — дешевше, ніж збирати поштучно.</p>
+  </div>
+  <div class="packs">
 
-    <section id="terms" class="section">
-      <h3>Умови оренди</h3>
-      <div class="terms-container">
-        <ul class="terms-list">
-          <li><span>📦</span> Доставка та монтаж по Львову та області</li>
-          <li><span>⏰</span> Доставка в день заходу або напередодні</li>
-          <li><span>💳</span> Оренда обладнання здійснюється за авансом</li>
-          <li><span>🔒</span> Аванс — гарантія бронювання дати та обладнання</li>
-          <li><span>🤝</span> Спеціальні умови для постійних клієнтів</li>
-        </ul>
-      </div>
-    </section>
-
-    <section id="advantages" class="section">
-      <h3>Наші переваги</h3>
-      <div class="advantages">
-        <div class="adv">✔ Доставка по Львову</div>
-        <div class="adv">✔ Технічна підтримка</div>
-        <div class="adv">✔ Сучасне обладнання</div>
-        <div class="adv">✔ Гнучкі ціни</div>
-        <div class="adv">✔ Аванс — гарантія бронювання</div>
-      </div>
-    </section>
-
-    <section id="order" class="section">
-      <h3>Оформити замовлення</h3>
-      <form id="orderForm">
-        <div style="margin-bottom:10px;"><label>Ім’я:</label><input type="text" id="name" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;"></div>
-        <div style="margin-bottom:10px;"><label>Телефон:</label><input type="tel" id="phone" value="+380" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;"></div>
-        <div style="margin-bottom:20px;"><label>Дата:</label><input type="date" id="order-date" required style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;"></div>
-
-        <div class="item-row">
-  <label><input type="checkbox" class="item-chk" data-price="400" data-name="Проектор"> Проектор</label>
-  <input type="number" class="item-qty" min="1" value="1">
-</div>
-<div class="item-row">
-  <label><input type="checkbox" class="item-chk" data-price="700" data-name="Акустична колонка"> Акустична колонка</label>
-  <input type="number" class="item-qty" min="1" value="1">
-</div>
-<div class="item-row">
-  <label><input type="checkbox" class="item-chk" data-price="250" data-name="Фліпчарт"> Фліпчарт</label>
-  <input type="number" class="item-qty" min="1" value="1">
-</div>
-<div class="item-row">
-  <label><input type="checkbox" class="item-chk" data-price="200" data-name="Мікрофон"> Мікрофон</label>
-  <input type="number" class="item-qty" min="1" value="1">
-</div>
-<div class="item-row">
-  <label><input type="checkbox" class="item-chk" data-price="200" data-name="Ресівер"> Ресівер</label>
-  <input type="number" class="item-qty" min="1" value="1">
-</div>
-<div class="item-row">
-  <label><input type="checkbox" class="item-chk" data-price="300" data-name="Каркас для банерів"> Каркас для банерів</label>
-  <input type="number" class="item-qty" min="1" value="1">
-</div>
-<div class="item-row">
-  <label><input type="checkbox" class="item-chk" data-price="300" data-name="Екран для проектора"> Екран для проектора</label>
-  <input type="number" class="item-qty" min="1" value="1">
-</div>
-<div class="item-row">
-  <label><input type="checkbox" class="item-chk" data-price="120" data-name="Папір для фліпчарту"> Папір для фліпчарту</label>
-  <input type="number" class="item-qty" min="1" value="1">
-</div>
-        <div style="margin:10px 0;"><label>Деталі:</label><textarea id="details" rows="3" style="width:100%; padding:10px; border-radius:8px; border:1px solid #ddd;"></textarea></div>
-
-        <p style="font-weight:bold; font-size:1.5rem;">Разом: <span id="total">0</span> грн</p>
-        <button type="submit" style="width:100%; padding:15px; background:#ff5a00; color:#fff; border:none; cursor:pointer; font-weight:700; border-radius:10px;">Забронювати</button>
-      </form>
-    </section>
-
-    <section id="socials" class="section">
-      <h3>Ми у соцмережах</h3>
-      <div class="socials">
-        <a href="https://www.facebook.com/profile.php?id=61580244497506" class="fb" target="_blank"><svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24H12.82v-9.294H9.692V11.01h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.696h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/></svg></a>
-        <a href="https://www.instagram.com/repre_zentbiz/" class="ig" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 3.608 1.325.975.975 1.262 2.242 1.324 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 2.633-1.324 3.608-.975.975-2.242 1.262-3.608 1.324-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.324-.975-.975-1.262-2.242-1.324-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.35-2.633 1.324-3.608C4.532 2.583 5.799 2.296 7.165 2.234 8.431 2.176 8.811 2.163 12 2.163z"/></svg></a>
-        <a href="https://www.tiktok.com/@repre_zentbiz" class="tt" target="_blank"><svg viewBox="0 0 24 24"><path d="M19.589 6.686a4.94 4.94 0 0 1-3.778-3.633V2h-3.445v13.54a2.852 2.852 0 1 1-2.82-2.852c.068 0 .135.003.201.01V9.26a6.295 6.295 0 1 0 6.064 6.28V7.95a9.603 9.603 0 0 0 5.246 1.654V6.255a4.905 4.905 0 0 1-1.468-.43z"/></svg></a>
-        <a href="https://www.threads.net/@repre_zentbiz" class="th" target="_blank"><svg viewBox="0 0 24 24"><path d="M12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-10C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></a>
-        <a href="https://www.linkedin.com/in/reprezent-biz-822004384/" class="ln" target="_blank"><svg viewBox="0 0 24 24"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM7.12 20.45H3.56V9h3.56v11.45zM5.34 7.56c-1.14 0-2.06-.93-2.06-2.06s.92-2.06 2.06-2.06c1.14 0 2.06.93 2.06 2.06s-.92 2.06-2.06 2.06zM20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67h-3.56V9h3.42v1.56h.05c.48-.9 1.66-1.86 3.42-1.86 3.66 0 4.34 2.41 4.34 5.54v6.21z"/></svg></a>
-      </div>
-    </section>
-
-    <section id="contacts" class="section" style="text-align: center;">
-      <h3 style="margin-bottom: 20px; color: #333;">Контакти</h3>
-      
-      <div style="display: inline-block; background: rgba(255,255,255,0.5); padding: 30px; border-radius: 20px; border: 2px solid #ffcc00; box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
-        
-        <div style="font-size: 1.15rem; line-height: 2.5;">
-          <p style="margin: 15px 0;">
-            <span style="background: #fff; padding: 8px 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: inline-block;">
-              📍 Львів
-            </span>
-          </p>
-          
-          <p style="margin: 15px 0;">
-            <a href="tel:+380931307883" style="text-decoration: none; color: #333; background: #fff; padding: 8px 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: inline-block; transition: 0.3s;">
-              📞 +38 093 130 78 83
-            </a>
-          </p>
-          
-          <p style="margin: 15px 0;">
-            <a href="mailto:reprezentbiz@gmail.com" style="text-decoration: none; color: #333; background: #fff; padding: 8px 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: inline-block; transition: 0.3s;">
-              ✉️ reprezentbiz@gmail.com
-            </a>
-          </p>
+    <div class="pack glass rise">
+      <div class="tag">Для навчання</div>
+      <div class="in">
+        <h4>Тренінг</h4>
+        <p class="who">Група до 20 осіб, майстер-клас</p>
+        <ul><li>Проектор</li><li>Екран для проектора</li><li>Фліпчарт</li></ul>
+        <div class="cost">
+          <span class="old">950 грн</span>
+          <span class="now">850 <s>грн/день</s></span>
+          <button class="go" data-pack="Тренінг">Обрати комплект</button>
         </div>
-        
       </div>
-    </section>
-  </main>
+    </div>
 
-  <div class="tg-float"><a href="https://t.me/RepreZentbiz_bot" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" width="55" alt="TG"></a></div>
+    <div class="pack glass hit rise">
+      <div class="tag">Найчастіше беруть</div>
+      <div class="in">
+        <h4>Корпоратив</h4>
+        <p class="who">Презентація, конференція, свято</p>
+        <ul><li>Проектор</li><li>Екран для проектора</li><li>Акустична колонка</li><li>Мікрофон + ресівер</li></ul>
+        <div class="cost">
+          <span class="old">1800 грн</span>
+          <span class="now">1600 <s>грн/день</s></span>
+          <button class="go" data-pack="Корпоратив">Обрати комплект</button>
+        </div>
+      </div>
+    </div>
 
-  <footer style="text-align: center; padding: 30px; background: #333; color: #fff;">&copy; 2026 RepreZentbiz.</footer>
+    <div class="pack glass rise">
+      <div class="tag">Для сцени</div>
+      <div class="in">
+        <h4>Виступ</h4>
+        <p class="who">Відкритий захід, привітання, вулиця</p>
+        <ul><li>Акустична колонка</li><li>Мікрофон + ресівер</li><li>Каркас для банерів</li></ul>
+        <div class="cost">
+          <span class="old">1400 грн</span>
+          <span class="now">1250 <s>грн/день</s></span>
+          <button class="go" data-pack="Виступ">Обрати комплект</button>
+        </div>
+      </div>
+    </div>
 
- <script src="script.js"></script>
+  </div>
+</section>
+
+<section id="terms" class="sec">
+  <div class="sec-h rise"><h3>Умови</h3><p>Коротко і без дрібного шрифту.</p></div>
+  <div class="tlist">
+    <div class="tcard glass rise"><div class="k">Доставка</div><div class="v">По Львову та області, з монтажем на місці.</div></div>
+    <div class="tcard glass rise"><div class="k">Час</div><div class="v">Привозимо в день заходу або напередодні ввечері.</div></div>
+    <div class="tcard glass rise"><div class="k">Оплата</div><div class="v">Аванс при бронюванні, решта — при видачі.</div></div>
+    <div class="tcard glass rise"><div class="k">Бронь</div><div class="v">Дата й обладнання закріплюються за вами після авансу.</div></div>
+    <div class="tcard glass rise"><div class="k">Підтримка</div><div class="v">Показуємо, як увімкнути, і лишаємось на зв'язку.</div></div>
+    <div class="tcard glass rise"><div class="k">Постійним клієнтам</div><div class="v">Окремі умови та ціни — домовляємось особисто.</div></div>
+  </div>
+</section>
+
+<!-- ВІДГУКИ: заміни на справжні або прибери секцію -->
+<section id="reviews" class="sec">
+  <div class="sec-h rise"><h3>Відгуки</h3></div>
+  <div class="revs">
+    <div class="rev glass rise"><div class="st">★★★★★</div><p>Все привезли вчасно, швидко підключили. Проектор і звук — супер.</p><cite>Олена · корпоративний захід</cite></div>
+    <div class="rev glass rise"><div class="st">★★★★★</div><p>Брали фліпчарти та мікрофони для тренінгу. Дуже зручно, сервіс на рівні.</p><cite>Андрій · бізнес-тренінг</cite></div>
+    <div class="rev glass rise"><div class="st">★★★★★</div><p>Професійний підхід і нормальні ціни. Обладнання чисте й справне.</p><cite>Ірина · івент-менеджер</cite></div>
+  </div>
+</section>
+
+<section id="order" class="sec">
+  <div class="sec-h rise">
+    <h3>Замовлення</h3>
+    <p>Порахуйте вартість і залиште заявку — підтвердимо наявність на ваші дати.</p>
+  </div>
+
+  <div class="quickask glass rise">
+    <p>Просто хочете спитати, чи вільно на вашу дату?</p>
+    <a id="askTg" href="tel:+380931307883">Зателефонувати</a>
+  </div>
+
+  <form id="orderForm" class="rise">
+    <div class="fld"><label for="name">Ім'я</label><input type="text" id="name" required></div>
+    <div class="fld"><label for="phone">Телефон</label><input type="tel" id="phone" value="+380" required></div>
+
+    <div class="dates">
+      <div><label for="date-from">Видача</label><input type="date" id="date-from" required></div>
+      <div><label for="date-to">Повернення</label><input type="date" id="date-to" required></div>
+    </div>
+    <div class="datehint" id="dateHint">Оренда на 1 день</div>
+
+    <div class="pickhead">Обладнання</div>
+
+    <div class="item-row">
+      <label><input type="checkbox" class="item-chk" data-price="400" data-name="Проектор"> Проектор <span class="unit-p">400/день</span></label>
+      <input type="number" class="item-qty" min="1" max="2" value="1" aria-label="Кількість: проектор">
+    </div>
+    <div class="item-row">
+      <label><input type="checkbox" class="item-chk" data-price="700" data-name="Акустична колонка"> Акустична колонка <span class="unit-p">700/день</span></label>
+      <input type="number" class="item-qty" min="1" max="1" value="1" aria-label="Кількість: колонка">
+    </div>
+    <div class="item-row">
+      <label><input type="checkbox" class="item-chk" data-price="250" data-name="Фліпчарт"> Фліпчарт <span class="unit-p">250/день</span></label>
+      <input type="number" class="item-qty" min="1" max="5" value="1" aria-label="Кількість: фліпчарт">
+    </div>
+    <div class="item-row">
+      <label><input type="checkbox" class="item-chk" data-price="200" data-name="Мікрофон"> Мікрофон <span class="unit-p">200/день</span></label>
+      <input type="number" class="item-qty" min="1" max="1" value="1" aria-label="Кількість: мікрофон">
+    </div>
+    <div class="item-row">
+      <label><input type="checkbox" class="item-chk" data-price="200" data-name="Ресівер"> Ресівер <span class="unit-p">200/день</span></label>
+      <input type="number" class="item-qty" min="1" max="3" value="1" aria-label="Кількість: ресівер">
+    </div>
+    <div class="item-row">
+      <label><input type="checkbox" class="item-chk" data-price="300" data-name="Каркас для банерів"> Каркас для банерів <span class="unit-p">300/день</span></label>
+      <input type="number" class="item-qty" min="1" max="1" value="1" aria-label="Кількість: каркас">
+    </div>
+    <div class="item-row">
+      <label><input type="checkbox" class="item-chk" data-price="300" data-name="Екран для проектора"> Екран для проектора <span class="unit-p">300/день</span></label>
+      <input type="number" class="item-qty" min="1" max="1" value="1" aria-label="Кількість: екран">
+    </div>
+    <div class="item-row">
+      <label><input type="checkbox" class="item-chk" data-price="120" data-name="Папір для фліпчарту" data-once="1"> Папір для фліпчарту <span class="unit-p">120/пачка</span></label>
+      <input type="number" class="item-qty" min="1" max="20" value="1" aria-label="Кількість: папір">
+    </div>
+
+    <div class="packline" id="packLine"></div>
+
+    <div class="fld" style="margin-top:20px"><label for="details">Деталі: адреса, час, монтаж</label><textarea id="details" rows="3" placeholder="вул. …, захід о 14:00"></textarea></div>
+
+    <div class="sumbox">
+      <span class="days" id="daysLine">За 1 день</span>
+      <span class="big">Разом: <span id="total">0</span> грн</span>
+    </div>
+
+    <button type="submit">Забронювати</button>
+  </form>
+
+  <div id="thanks">
+    <div class="tick">✅</div>
+    <h4>Заявку прийнято</h4>
+    <p>Зв'яжемося протягом години, щоб підтвердити наявність на ваші дати.</p>
+    <div class="recap" id="recap"></div>
+    <a class="tgbtn" id="thanksTg" href="#" target="_blank" rel="noopener">Зберегти копію в Telegram</a>
+    <button class="again" id="againBtn">Зробити ще одне замовлення</button>
+  </div>
+</section>
+
+<section id="contacts" class="sec">
+  <div class="sec-h rise"><h3>Контакти</h3></div>
+  <div class="cgrid">
+    <span class="glass rise"><div class="k">Місто</div><div class="v">Львів та область</div></span>
+    <a class="glass rise" href="tel:+380931307883"><div class="k">Телефон</div><div class="v">093 130 78 83</div></a>
+    <a class="glass rise" href="mailto:reprezentbiz@gmail.com"><div class="k">Пошта</div><div class="v">reprezentbiz@gmail.com</div></a>
+  </div>
+  <div class="socials">
+    <a href="https://www.facebook.com/profile.php?id=61580244497506" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 1.326 24H12.82v-9.294H9.692V11.01h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.464.099 2.795.143v3.24l-1.918.001c-1.504 0-1.796.715-1.796 1.763v2.31h3.587l-.467 3.696h-3.12V24h6.116C23.403 24 24 23.403 24 22.674V1.326C24 .597 23.403 0 22.675 0z"/></svg></a>
+    <a href="https://www.instagram.com/repre_zentbiz/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.35 3.608 1.325.975.975 1.262 2.242 1.324 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.35 2.633-1.324 3.608-.975.975-2.242 1.262-3.608 1.324-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.35-3.608-1.324-.975-.975-1.262-2.242-1.324-3.608C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.062-1.366.35-2.633 1.324-3.608C4.532 2.583 5.799 2.296 7.165 2.234 8.431 2.176 8.811 2.163 12 2.163z"/></svg></a>
+    <a href="https://www.tiktok.com/@repre_zentbiz" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.589 6.686a4.94 4.94 0 0 1-3.778-3.633V2h-3.445v13.54a2.852 2.852 0 1 1-2.82-2.852c.068 0 .135.003.201.01V9.26a6.295 6.295 0 1 0 6.064 6.28V7.95a9.603 9.603 0 0 0 5.246 1.654V6.255a4.905 4.905 0 0 1-1.468-.43z"/></svg></a>
+    <a href="https://www.threads.net/@repre_zentbiz" target="_blank" rel="noopener" aria-label="Threads"><svg viewBox="0 0 24 24"><path d="M12 12c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm0-10C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg></a>
+    <a href="https://www.linkedin.com/in/reprezent-biz-822004384/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M19 0h-14C2.24 0 0 2.24 0 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM7.12 20.45H3.56V9h3.56v11.45zM5.34 7.56c-1.14 0-2.06-.93-2.06-2.06s.92-2.06 2.06-2.06c1.14 0 2.06.93 2.06 2.06s-.92 2.06-2.06 2.06zM20.45 20.45h-3.56v-5.57c0-1.33-.03-3.05-1.86-3.05-1.86 0-2.14 1.45-2.14 2.95v5.67h-3.56V9h3.42v1.56h.05c.48-.9 1.66-1.86 3.42-1.86 3.66 0 4.34 2.41 4.34 5.54v6.21z"/></svg></a>
+  </div>
+</section>
+
+</main>
+
+<div class="tg-float" id="tgFloat"><a id="tgFloatLink" href="tel:+380931307883" aria-label="Зв'язок"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111646.png" width="26" alt=""></a></div>
+
+<footer>© 2026 RepreZentbiz · Оренда презентаційного обладнання, Львів</footer>
+
+<script src="effects.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
