@@ -2,6 +2,43 @@
    Розмітка в index.html, логіка замовлення в script.js,
    ефекти появи та нахилу карток в effects.js. */
 
+/* Світла тема вмикається класом .light на <html>.
+   Змінюються лише значення змінних — жодне правило нижче
+   переписувати не треба. */
+html.light{
+  --void:#F2F3F7;
+  --glass:rgba(255,255,255,.72);
+  --glass-2:rgba(255,255,255,.9);
+  --edge:rgba(16,18,32,.1);
+  --txt:#12121A;
+  --dim:#61637A;
+}
+html.light body{background:#F2F3F7}
+html.light .hd{background:rgba(255,255,255,.72);border-bottom-color:rgba(16,18,32,.09)}
+html.light .hd nav a{color:#61637A}
+html.light .hd nav a:hover{color:#12121A}
+html.light .hd .call{background:linear-gradient(96deg,#12121A,#33354A);color:#fff}
+html.light .grain{
+  background:
+    radial-gradient(120% 90% at 50% -10%,transparent 40%,rgba(242,243,247,.86) 100%),
+    linear-gradient(180deg,transparent 0%,rgba(242,243,247,.62) 65%,#F2F3F7 100%);
+}
+html.light .lights i{opacity:.34}
+html.light .btn-w{background:#12121A;color:#fff;box-shadow:0 10px 30px rgba(16,18,32,.22)}
+html.light .pack .go,html.light #orderForm button[type=submit],html.light #thanks .tgbtn{
+  background:linear-gradient(96deg,#12121A,#33354A);color:#fff;
+}
+html.light .unit .stock{background:rgba(255,255,255,.9);color:#12121A}
+html.light .pack li{color:#3D3F52}
+html.light .rev p{color:#3D3F52}
+html.light .tlist .v,html.light .pack .who{color:#4A4C61}
+html.light #orderForm input,html.light #orderForm textarea{background:rgba(16,18,32,.035);color:#12121A}
+html.light #orderForm input[type=date]{color-scheme:light}
+html.light .item-row{background:rgba(16,18,32,.03);border-color:rgba(16,18,32,.07)}
+html.light .item-row:hover{background:rgba(16,18,32,.055)}
+html.light .datehint{color:#3F4157}
+html.light footer{color:#8A8CA0;border-top-color:rgba(16,18,32,.09)}
+
 :root{
   --void:#07070F;
   --r-red:#FF3B5C;      /* червоний канал проектора */
@@ -309,3 +346,27 @@ footer{padding:32px 5%;text-align:center;color:#6E7086;
   .rise{opacity:1;transform:none}
 }
 :focus-visible{outline:2px solid var(--g-grn);outline-offset:3px}
+
+
+/* ---------- перемикач теми ---------- */
+.theme{
+  width:38px;height:38px;flex:none;display:grid;place-items:center;cursor:pointer;
+  border-radius:50%;border:1px solid var(--edge);background:var(--glass);
+  color:var(--txt);font-size:15px;line-height:1;transition:.25s;
+}
+.theme:hover{background:var(--glass-2)}
+
+/* ---------- наявність у формі ---------- */
+.stock-tag{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;
+  padding:3px 9px;border-radius:99px;margin-left:auto;white-space:nowrap;
+}
+.stock-tag[data-state=ok]{background:rgba(34,227,155,.15);color:var(--g-grn)}
+.stock-tag[data-state=low]{background:rgba(255,180,60,.18);color:#FFB43C}
+.stock-tag[data-state=full]{background:rgba(255,59,92,.15);color:var(--r-red)}
+html.light .stock-tag[data-state=ok]{background:rgba(0,168,112,.14);color:#00875C}
+html.light .stock-tag[data-state=low]{background:rgba(200,120,0,.14);color:#9A5E00}
+html.light .stock-tag[data-state=full]{background:rgba(214,39,58,.12);color:#C31F32}
+.item-row label{flex:1 1 auto}
+.item-row.taken{opacity:.5}
+.item-row.taken label{cursor:not-allowed}
