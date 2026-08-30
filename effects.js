@@ -4,6 +4,30 @@
 
 /* Поява при прокрутці */
 (function(){
+  /* ---------- тема ---------- */
+  /* Спершу дивимось на збережений вибір, потім на системну
+     тему пристрою. Обгортаємо в try, бо в деяких режимах
+     приватного перегляду сховище кидає помилку. */
+  var root = document.documentElement;
+  var saved = null;
+  try { saved = localStorage.getItem('rz_theme'); } catch(e){}
+  var prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+  if (saved === 'light' || (saved === null && prefersLight)) root.classList.add('light');
+
+  var tb = document.getElementById('themeBtn');
+  function paintBtn(){
+    if(!tb) return;
+    var light = root.classList.contains('light');
+    tb.textContent = light ? '☀' : '☾';
+    tb.setAttribute('aria-label', light ? 'Увімкнути темну тему' : 'Увімкнути світлу тему');
+  }
+  paintBtn();
+  if (tb) tb.addEventListener('click', function(){
+    root.classList.toggle('light');
+    try { localStorage.setItem('rz_theme', root.classList.contains('light') ? 'light' : 'dark'); } catch(e){}
+    paintBtn();
+  });
+
   var motion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var els = document.querySelectorAll('.rise');
   if (motion || !('IntersectionObserver' in window)) {
