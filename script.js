@@ -44,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const toEl     = document.getElementById('date-to');
   const phoneEl  = document.getElementById('phone');
   const packLine = document.getElementById('packLine');
-  const thanks   = document.getElementById('thanks');
 
   if (!form) return;
 
@@ -77,6 +76,45 @@ document.addEventListener('DOMContentLoaded', () => {
     const digits = phoneEl.value.substring(4).replace(/\D/g, '');
     phoneEl.value = '+380' + digits.substring(0, 9);
   });
+
+  /* ---------- наявність на обрані дати ---------- */
+  /* Дані беруться з Firebase (firebase.js). Якщо він мовчить,
+     функція повертає null — тоді нічого не показуємо і нічого
+     не блокуємо: краще прийняти заявку й передзвонити, ніж
+     відмовити через технічний збій. */
+  function freeFor(chk){
+    if(!window.availability || !window.availability.ready) return null;
+    const [from,to] = [fromEl.value, toEl.value];
+    if(!from || !to) return null;
+    return window.availability.free(chk.dataset.name, from, to);
+  }
+
+  function paintStock(){
+    allChk().forEach(chk=>{
+      const row = chk.closest('.item-row');
+      let tag = row.querySelector('.stock-tag');
+      const free = freeFor(chk);
+      if(free === null){ if(tag) tag.remove(); row.classList.remove('taken'); return; }
+      if(!tag){
+        tag = document.createElement('span');
+        tag.className = 'stock-tag';
+        row.querySelector('label').append(tag);
+      }
+      if(free <= 0){
+        tag.textContent = 'зайнято на ці дати';
+        tag.dataset.state = 'full';
+        row.classList.add('taken');
+        if(chk.checked){ chk.checked = false; }
+      }else{
+        tag.textContent = `вільно ${free}`;
+        tag.dataset.state = free === 1 ? 'low' : 'ok';
+        row.classList.remove('taken');
+        const qty = row.querySelector('.item-qty');
+        if(qty && Number(qty.value) > free) qty.value = free;
+        if(qty) qty.max = free;
+      }
+    });
+  }
 
   /* ---------- допоміжне ---------- */
   const allChk = () => Array.from(form.querySelectorAll('.item-chk'));
@@ -111,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function calculateTotal() {
+    paintStock();
     clampQty();
     const days = rentalDays();
     if (activePack && !packStillValid()) activePack = null;
@@ -213,28 +252,15 @@ document.addEventListener('DOMContentLoaded', () => {
       ]);
       if (!res.ok) throw new Error('bad response');
 
-      // Екран підтвердження
-      const period = payload.date === payload.date_to
-        ? payload.date
-        : `${payload.date} → ${payload.date_to}`;
-      document.getElementById('recap').innerHTML = `
-        <div><strong>Дати:</strong> ${period} (${days} ${days === 1 ? 'день' : days < 5 ? 'дні' : 'днів'})</div>
-        <div><strong>Обладнання:</strong> ${payload.items}</div>
-        ${activePack ? `<div><strong>Комплект:</strong> ${activePack}</div>` : ''}
-        <div><strong>Сума:</strong> ${total} грн</div>
-        <div style="margin-top:10px; color:#888; font-size:0.88rem;">
-          Бронь фіксується після авансу — реквізити надішлемо при підтвердженні.
-        </div>`;
-
-      const copy = `Моє замовлення в RepreZentbiz:\n${items.map(i => '• ' + i).join('\n')}\n\nДати: ${period}\nСума: ${total} грн`;
-      document.getElementById('thanksTg').href =
-        'https://t.me/share/url?url=' + encodeURIComponent('https://reprezent.biz/') +
-        '&text=' + encodeURIComponent(copy);
-
-      form.style.display = 'none';
-      document.querySelector('.quickask').style.display = 'none';
-      thanks.style.display = 'block';
-      thanks.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // Далі — окрема сторінка подяки. Вона дає нормальну адресу
+      // /thanks/, за якою можна рахувати конверсію в аналітиці.
+      try{
+        sessionStorage.setItem('rz_order', JSON.stringify({
+          items, total, days, pack: activePack || '',
+          from: payload.date, to: payload.date_to
+        }));
+      }catch(_){}
+      window.location.href = '/thanks/';
 
     } catch (err) {
       alert('Не вдалося надіслати. Перевірте зв’язок або зателефонуйте: +38 093 130 78 83');
@@ -242,21 +268,6 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = false;
       btn.textContent = 'Забронювати';
     }
-  });
-
-  /* ---------- «ще одне замовлення» ---------- */
-  document.getElementById('againBtn').addEventListener('click', () => {
-    form.reset();
-    activePack = null;
-    fromEl.value = todayStr;
-    toEl.value = todayStr;
-    phoneEl.value = '+380';
-    syncDates();
-    calculateTotal();
-    thanks.style.display = 'none';
-    form.style.display = 'block';
-    document.querySelector('.quickask').style.display = 'block';
-    form.scrollIntoView({ behavior: 'smooth' });
   });
 
   /* ---------- швидкий контакт ---------- */
@@ -270,9 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
     floatLink.href = 'https://t.me/' + CONTACT_TG;
     floatLink.target = '_blank'; floatLink.rel = 'noopener';
   }
-  // Копію замовлення теж немає сенсу слати в бота
-  const thanksTg = document.getElementById('thanksTg');
-  if (!CONTACT_TG) thanksTg.style.display = 'none';
+
+  document.addEventListener('availability-updated', calculateTotal);
 
   syncDates();
   calculateTotal();
