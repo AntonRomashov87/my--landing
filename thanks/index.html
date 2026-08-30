@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#07070F">
+<meta name="robots" content="noindex, follow">
+<title>Заявку прийнято — RepreZentbiz</title>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/style.css">
+<style>
+  .ok-wrap{max-width:640px;margin:0 auto;padding:90px 5% 80px;text-align:center}
+  .ok-tick{
+    width:76px;height:76px;margin:0 auto 26px;border-radius:50%;
+    display:grid;place-items:center;font-size:34px;
+    background:linear-gradient(140deg,var(--g-grn),#7CF0C6);color:var(--void);
+    box-shadow:0 14px 40px rgba(34,227,155,.34);
+  }
+  .ok-wrap h1{font-size:clamp(1.7rem,5vw,2.6rem);font-weight:800;margin-bottom:14px}
+  .ok-wrap .lead{color:var(--dim);font-size:1.03rem;margin:0 auto 30px;max-width:440px}
+  .recap{
+    text-align:left;padding:22px 24px;margin-bottom:26px;
+    background:var(--glass);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+    border:1px solid var(--edge);border-radius:var(--rad);
+    font-family:'JetBrains Mono',monospace;font-size:.9rem;color:#DCDEE9;
+  }
+  .recap div{padding:5px 0}
+  .recap b{color:#fff}
+  .steps{text-align:left;margin:0 0 30px;padding:0;list-style:none}
+  .steps li{
+    display:flex;gap:13px;align-items:flex-start;padding:11px 0;
+    border-bottom:1px solid rgba(255,255,255,.07);color:#D3D5DF;font-size:.96rem;
+  }
+  .steps b{
+    flex:none;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;
+    background:var(--glass-2);border:1px solid var(--edge);
+    font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--txt);
+  }
+  .ok-cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+</style>
+</head>
+<body>
+
+<div class="lights"><i class="l-r"></i><i class="l-g"></i><i class="l-b"></i></div>
+<div class="grain"></div>
+
+<header class="hd">
+  <a class="lg" href="/" style="text-decoration:none;color:inherit">
+    <img src="/favicon-32.png" alt="RepreZentbiz">
+    <span class="nm">Repre<b>Zent</b></span>
+  </a>
+  <a class="call" href="tel:+380931307883">093 130 78 83</a>
+</header>
+
+<main class="ok-wrap">
+  <div class="ok-tick">✓</div>
+  <h1>Заявку прийнято</h1>
+  <p class="lead">Зв'яжемося протягом години, щоб підтвердити наявність обладнання на ваші дати.</p>
+
+  <div class="recap" id="recap" style="display:none"></div>
+
+  <ul class="steps">
+    <li><b>1</b><span>Перевіряємо, що все вільне на ваші дати, і телефонуємо.</span></li>
+    <li><b>2</b><span>Надсилаємо рахунок. Аванс закріплює дату й обладнання за вами.</span></li>
+    <li><b>3</b><span>Привозимо в день заходу або напередодні, підключаємо на місці.</span></li>
+  </ul>
+
+  <div class="ok-cta">
+    <a class="btn btn-w" href="tel:+380931307883">Зателефонувати зараз</a>
+    <a class="btn btn-g" href="/">На головну</a>
+  </div>
+</main>
+
+<footer>© 2026 RepreZentbiz · Оренда презентаційного обладнання, Львів</footer>
+
+<script>
+/* Тема — той самий вибір, що й на головній. */
+(function(){
+  var s=null; try{ s=localStorage.getItem('rz_theme'); }catch(e){}
+  if(s==='light'||(s===null&&window.matchMedia('(prefers-color-scheme: light)').matches))
+    document.documentElement.classList.add('light');
+})();
+/* Дані замовлення передані з головної сторінки через sessionStorage.
+   Показуємо один раз і одразу стираємо: якщо людина повернеться
+   сюди завтра, вона не побачить старе замовлення. */
+(function(){
+  var raw = null;
+  try { raw = sessionStorage.getItem('rz_order'); sessionStorage.removeItem('rz_order'); } catch(e){}
+  if(!raw) return;
+  var o;
+  try { o = JSON.parse(raw); } catch(e){ return; }
+  var period = (o.from === o.to) ? o.from : o.from + ' → ' + o.to;
+  var d = Number(o.days) || 1;
+  var word = d === 1 ? 'день' : (d < 5 ? 'дні' : 'днів');
+  var box = document.getElementById('recap');
+  box.innerHTML =
+    '<div><b>Дати:</b> ' + period + ' (' + d + ' ' + word + ')</div>' +
+    (o.pack ? '<div><b>Комплект:</b> ' + o.pack + '</div>' : '') +
+    '<div><b>Обладнання:</b> ' + (o.items || []).join(', ') + '</div>' +
+    '<div><b>Сума:</b> ' + o.total + ' грн</div>';
+  box.style.display = 'block';
+})();
+</script>
+</body>
+</html>
