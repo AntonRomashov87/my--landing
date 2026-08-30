@@ -370,3 +370,11 @@ html.light .stock-tag[data-state=full]{background:rgba(214,39,58,.12);color:#C31
 .item-row label{flex:1 1 auto}
 .item-row.taken{opacity:.5}
 .item-row.taken label{cursor:not-allowed}
+
+html.light .btn-g{background:rgba(255,255,255,.9);border-color:rgba(16,18,32,.16);color:#12121A}
+html.light .btn-g:hover{border-color:#12121A}
+html.light .kicker{color:#4A4C61}
+html.light .hero .sub{color:#4A4C61}
+html.light .unit .note,html.light .sec-h p{color:#54566B}
+html.light .unit .pr small{color:#61637A}
+html.light .rev cite,html.light .pack .old{color:#61637A}
